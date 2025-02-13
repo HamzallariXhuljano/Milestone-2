@@ -3,46 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 19:42:38 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/27 20:33:27 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/19 17:41:50 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/27 20:37:32 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+
+static size_t	ft_strlfen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	x;
-	size_t	j;
+	size_t	f;
+	size_t	h;
 
-	x = 0;
-	i = ft_strlen(dst);
-	j = i;
+	i = ft_strlfen(dst);
+	f = 0;
+	h = ft_strlfen(src);
 	if (size <= i)
+		return (size + h);
+	while (((i + f) < size - 1) && src[f] != '\0')
 	{
-		return (size + ft_strlen(src));
+		dst[i + f] = src[f];
+		f++;
 	}
-	while (i < size - 1 && src[x] != '\0')
-	{
-		dst[i] = src[x];
-		x++;
-		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src) + j);
+	dst[i + f] = '\0';
+	return (i + h);
+}
+/*
+int	main(void)
+{
+	char *src = "llo";
+	char dst[12] = "He";
+	ft_strlcat(dst, src, 5);
+	printf("%s", dst);
 }
 
-/*int main()
-{
-    char dst[20] = "Hello, ";
-    const char *src = "World!";
-    size_t result;
-    result =ft_strlcat(dst, src, 20);
-    printf("Resulting string: %s\n", dst);
-    printf("Total length: %zu\n", result);
-
-    return 0;
-}*/
+-concat
+-size > 0
+-return size if dont find null, and dest not null terminated
+-return len of dest + len of src if finds null
+-size contains null byte */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/30 17:56:31 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/04 19:04:40 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/26 20:45:39 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/28 23:46:50 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*new;
+	t_list	*newnode;
 
-	new = malloc (sizeof(t_list));
-	if (!new)
+	newnode = (t_list *)malloc(sizeof(t_list));
+	if (newnode == NULL)
 		return (NULL);
-	new -> content = content;
-	new -> next = NULL;
-	return (new);
+	newnode -> content = content;
+	newnode -> next = NULL;
+	return (newnode);
 }
-/* int main()
-{
-	t_list *prova;
-	char *content = "c";
-	prova = ft_lstnew(content);
-	printf("%s", (char *)(prova -> content));
-} */
+// int	main(void)
+// {
+// 	char *content = "Test";
+// 	t_list	*node = ft_lstnew((void *)content);
+// 	if(node)
+// 	{
+// 		printf("%s", (char *)node -> content);
+// 		printf("%p", (void *)node -> next);
+// 	}
+// }

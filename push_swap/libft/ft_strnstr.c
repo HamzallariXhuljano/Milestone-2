@@ -3,43 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 15:56:00 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/27 20:35:56 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/20 14:08:10 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/20 15:51:38 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	i;
-	size_t	j;
+	size_t	a;
+	size_t	b;
 
-	i = 0;
-	j = 0;
-	if (little[0] == '\0')
+	a = 0;
+	if (*little == '\0')
 		return ((char *)big);
-	while (i < len && big[i] != '\0')
+	while (big[a] != '\0' && a < len)
 	{
-		if (little[j] == big[i])
-		{
-			while (little[j] != '\0' && j + i < len && little[j] == big[j + i])
-			{
-				j++;
-			}
-			if (little[j] == '\0')
-				return ((char *) &big[i]);
-			else
-				j = 0;
-		}
-		i++;
+		b = 0;
+		while (big[a + b] == little[b] && little[b] != '\0' && (a + b) < len)
+			b++;
+		if (little[b] == '\0')
+			return ((char *)&big[a]);
+		a++;
 	}
 	return (NULL);
 }
-// int main()
-// {
-// 	printf("Mia Funzione = %s", ft_strnstr("or sit amet", "dolor", 15));
-// 	//printf("Mia Funzione = %d", strnstr("ciao come", "ci", 10));
-// }
+/*
+int	main(void)
+{
+	char	*big = "Hellowoworlddd";
+	char	*little ="";
+	printf("%s", ft_strnstr(big, little, 3));
+}*/

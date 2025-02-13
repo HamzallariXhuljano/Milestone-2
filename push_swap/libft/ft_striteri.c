@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 16:45:43 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/28 17:31:44 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/25 00:38:49 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/25 00:38:49 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-/* static void ft_upper(unsigned int i, char *str)
-{
-    (void)i; // Ignora l'indice se non necessario
-    if (*str >= 'a' && *str <= 'z')
-        *str = *str - 32; // Converte il carattere in maiuscolo
-} */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+/*static void	ft_f(unsigned int i, char *c)
+{
+	*c = *c - 32;
+	*c = *c + i;
+}*/
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
 
 	i = 0;
-	if (s == NULL || f == NULL)
+	if (s == NULL)
 		return ;
 	while (s[i] != '\0')
 	{
 		f(i, &s[i]);
 		i++;
 	}
+	return ;
 }
-// int main()
-// {
-// 	char prova[] = "CiaP";
-// 	ft_striteri(prova, ft_upper);
-// 	printf("%s", prova);
-// }
+
+/* int     main(void)
+{
+    char    src[] = "abcd";
+    ft_striteri(src, ft_f);
+        printf("%s", src);
+} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/30 20:45:33 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/12/01 18:17:49 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/27 19:39:56 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/28 19:43:16 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,38 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	t_list	*temp;
-	int		i;
+	int	i;
 
 	i = 0;
-	temp = lst;
-	while (temp)
+	while (lst)
 	{
-		temp = temp -> next;
+		lst = lst -> next;
 		i++;
 	}
 	return (i);
 }
+/* t_list	*ft_lstnew(void *content)
+{
+	t_list	*newnode;
 
-// int main()
-// {
-// 	t_list	*head = ft_lstnew("ciao");
-// 	t_list	*middle = ft_lstnew("hey");
-// 	t_list	*last = ft_lstnew("hola");
-// 	printf("%d\n", ft_lstsize(head));
-// 	head -> next = middle;
-// 	middle -> next = last;
-// 	printf("%d", ft_lstsize(head));
-// }
+	newnode = (t_list *)malloc(sizeof(t_list));
+	if (newnode == NULL)
+		return (NULL);
+	newnode -> content = content;
+	newnode -> next = NULL;
+	return (newnode);
+}
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new -> next = *lst;
+	*lst = new;
+}
+int	main(void)
+{
+	t_list	*head = ft_lstnew("1");
+	t_list	*newnode = ft_lstnew("2");
+	ft_lstadd_front(&head, newnode);
+	t_list	*anothernode = ft_lstnew("3");
+	ft_lstadd_front(&head, anothernode);
+	printf("%d", ft_lstsize(head));
+} */

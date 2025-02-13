@@ -3,36 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 01:15:24 by xxx               #+#    #+#             */
-/*   Updated: 2024/11/27 20:30:38 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/20 20:47:47 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/20 21:10:10 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 char	*ft_strdup(const char *s)
 {
-	char	*str;
 	int		i;
+	int		a;
+	char	*str;
 
-	str = malloc(ft_strlen(s) * sizeof(char) + 1);
-	if (str == NULL)
-	{
-		return (NULL);
-	}
 	i = 0;
+	a = 0;
+	while (s[a] != '\0')
+		a++;
+	str = (char *)malloc((a + 1) * (sizeof(char)));
+	if (str == NULL)
+		return (NULL);
 	while (s[i] != '\0')
 	{
 		str[i] = s[i];
 		i++;
 	}
 	str[i] = '\0';
-	return (str);
+	return (&str[0]);
 }
-// int main ()
-// {
-// 	printf("print with C function %s\n",strdup("lorem ipsum dolet"));
-// 	printf("print with my function %s\n",ft_strdup("lorem ipsum  amet"));
-// }
+/*
+int	main(void)
+{
+	char	*s = "helloworld";
+	char *dup = (char *)ft_strdup(s);
+	printf("%s", dup);
+	if (dup != NULL)
+		free(dup);
+	return (0);
+}*/

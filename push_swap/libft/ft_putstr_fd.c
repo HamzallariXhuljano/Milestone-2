@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 18:10:42 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/29 15:24:30 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/25 01:14:12 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/25 01:14:12 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		write(fd, &s[i], 1);
 		i++;
 	}
 }
-/* int main(void)
+/*
+int main(void)
 {
-	int fd = open("text.txt", O_RDWR);
-	ft_putstr_fd("ciao boss", fd);
-	close(fd);
-} */
+    char    s[] = "tf";
+    ft_putstr_fd(s, 1);
+    return (0);
+}*/

@@ -3,44 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 16:07:40 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/27 20:31:18 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/21 11:38:01 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/27 20:38:25 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include <string.h>
+
+static int	ft_strlten(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+static char	*ft_strcat(char *dest, char *src)
+{
+	int	i;
+	int	b;
+
+	b = 0;
+	i = ft_strlten(dest);
+	while (src[b] != '\0')
+	{
+		dest[i] = src[b];
+		b++;
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len_s1;
-	size_t	len_s2;
-	size_t	i;
-	size_t	j;
-	char	*str;
+	char			*str;
+	unsigned int	total;
 
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	str = malloc((len_s1 + len_s2) * sizeof(char) + 1);
+	total = ft_strlten(s1) + ft_strlten(s2);
+	str = (char *)malloc((total + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
-	i = 0;
-	while (i < len_s1)
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (j < len_s2)
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
+	str[0] = '\0';
+	ft_strcat(str, (char *) s1);
+	ft_strcat(str, (char *) s2);
 	return (str);
 }
-// int main()
-// {
-// 	printf("Prova funzione = %s\n", ft_strjoin("", ""));
-// }
+/*
+int main(void)
+{
+	char	*s1 = "Tuamadre";
+	char	*s2 = "pottono";
+	char	*str = (char *)ft_strjoin(s1, s2);
+	if (str != NULL)
+	{
+		printf("%s", str);
+		free(str);
+	}
+	return (0);
+}
+*/

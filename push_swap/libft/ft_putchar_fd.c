@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 18:02:09 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/28 18:10:54 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/25 01:07:16 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/25 01:07:16 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
-// int main(void)
-// {
-// 	int fd = open("text.txt", O_RDWR);
-// 	ft_putchar_fd('F', fd);
-// 	close(fd);
-// }
+
+/*int main(void)
+{
+    int fd = open("text.txt", )
+    ft_putchar_fd('A', 1);
+    return (0);
+}*/

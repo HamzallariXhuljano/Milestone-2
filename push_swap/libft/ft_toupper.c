@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 21:47:30 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/27 20:39:18 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/20 09:30:25 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/20 09:40:45 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 int	ft_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-	{
+	if (c >= 97 && c <= 122)
 		return (c - 32);
-	}
 	return (c);
 }
-// int main ()
-// {
-// 	int c = toupper((int)'A');
-// 	printf("%d", c);
-// }
+/*
+int main(void)
+{
+	printf("%c",ft_toupper(100));
+}*/

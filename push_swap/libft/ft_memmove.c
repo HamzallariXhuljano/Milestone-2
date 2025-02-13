@@ -3,40 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 13:30:52 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/11/27 20:59:44 by xhamzall         ###   ########.fr       */
+/*   Created: 2024/11/19 13:29:42 by tkurukul          #+#    #+#             */
+/*   Updated: 2024/11/26 16:46:51 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned const char	*str_src;
-	unsigned char		*str_dest;
-	size_t				i;
+	unsigned char	*des;
+	unsigned char	*sr;
 
-	i = 0;
-	str_dest = (unsigned char *)dest;
-	str_src = (unsigned char *)src;
-	if (str_dest == NULL && str_src == NULL && n > 0)
+	if (!dest && !src)
 		return (NULL);
-	if (str_dest < str_src)
-	{
-		while (i < n)
-		{
-			str_dest[i] = str_src[i];
-			i++;
-		}
-	}
-	else if (str_src <= str_dest)
+	else if (!n)
+		return (dest);
+	des = (unsigned char *)dest;
+	sr = (unsigned char *)src;
+	if (des > sr)
 	{
 		while (n--)
-		{
-			str_dest[n] = str_src[n];
-		}
+			des[n] = sr[n];
+	}
+	else if (des < sr)
+	{
+		ft_memcpy(des, sr, n);
 	}
 	return (dest);
 }
+/*
+#include <string.h>
+int	main(void)
+{
+	char	src[20] = "Hello World";
+	char	*dest = src + 3;
+	memmove(dest, src, 5);
+	printf("%s", dest);
+}*/
