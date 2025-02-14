@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:09:02 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/12 03:23:55 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:57:07 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 # include <stdio.h>
 # include <fcntl.h>
 # include <ctype.h>
+# include  <limits.h>
 
 t_swap	*fft_lstnew(int	content);
 void	free_list(t_swap *swap);
