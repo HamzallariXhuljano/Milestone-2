@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:08:20 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/13 15:12:25 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/02/16 16:01:31 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,163 +14,174 @@
 // Function to swap the first two elements of stack a
 int sa(t_swap *swap)
 {
-    int tmp;
+	int tmp;
 
-    if (!swap || !swap->next)
-        return (-1);
-    tmp = swap->next->content;
-    swap->next->content = swap->content;
-    swap->content = tmp;
-    ft_printf("sa\n");
-    return (1);
+	if (!swap || !swap->next)
+		return (-1);
+	tmp = swap->next->content;
+	swap->next->content = swap->content;
+	swap->content = tmp;
+	ft_printf("sa\n");
+	count++;
+	return (1);
 }
 
 // Function to swap the first two elements of stack b
 int sb(t_swap *swap)
 {
-    int tmp;
+	int tmp;
 
-    if (!swap || !swap->next)
-        return (-1);
-    tmp = swap->next->content;
-    swap->next->content = swap->content;
-    swap->content = tmp;
-    ft_printf("sb\n");
-    return (1);
+	if (!swap || !swap->next)
+		return (-1);
+	tmp = swap->next->content;
+	swap->next->content = swap->content;
+	swap->content = tmp;
+	ft_printf("sb\n");
+	count++;
+	return (1);
 }
 
 // Function to swap the first two elements of both stacks a and b
 int ss(t_swap *a, t_swap *b)
 {
-    if ((sa(a) == 1) && (sb(b) == 1))
-    {
-        ft_printf("ss\n");
-        return (1);
-    }
-    else
-        return (-1);
+	if ((sa(a) == 1) && (sb(b) == 1))
+	{
+		ft_printf("ss\n");
+		count++;
+		return (1);
+	}
+	else
+		return (-1);
 }
 
 // Function to push the top element of stack b to stack a
 int pa(t_swap **a, t_swap **b)
 {
-    if (!b || !*b)
-        return (-1);
-    t_swap *tmp;
+	if (!b || !*b)
+		return (-1);
+	t_swap *tmp;
 
-    tmp = *b;
-    *b = (*b)->next;
-    tmp->next = *a;
-    *a = tmp;
-    ft_printf("pa\n");
-    return (1);
+	tmp = *b;
+	*b = (*b)->next;
+	tmp->next = *a;
+	*a = tmp;
+	ft_printf("pa\n");
+	count++;
+	return (1);
 }
 
 // Function to push the top element of stack a to stack b
 int pb(t_swap **a, t_swap **b)
 {
-    if (!a || !*a)
-        return (-1);
-    t_swap *tmp;
+	if (!a || !*a)
+		return (-1);
+	t_swap *tmp;
 
-    tmp = *a;
-    *a = (*a)->next;
-    tmp->next = *b;
-    *b = tmp;
-    ft_printf("pb\n");
-    return (1);
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = *b;
+	*b = tmp;
+	ft_printf("pb\n");
+	count++;
+	return (1);
 }
 
 // Function to rotate stack a (shift up all elements by 1)
 int ra(t_swap **swap)
 {
-    t_swap *last;
-    t_swap *first;
+	t_swap *last;
+	t_swap *first;
 
-    if (!*swap || !swap || !(*swap)->next)
-        return (-1);
-    first = *swap;
-    *swap = (*swap)->next;
-    first->next = NULL;
-    last = lastnode(swap);
-    last->next = first;
-    ft_printf("ra\n");
-    return (1);
+	if (!*swap || !swap || !(*swap)->next)
+		return (-1);
+	first = *swap;
+	*swap = (*swap)->next;
+	first->next = NULL;
+	last = lastnode(swap);
+	last->next = first;
+	ft_printf("ra\n");
+	count++;
+	return (1);
 }
 
 // Function to rotate stack b (shift up all elements by 1)
 int rb(t_swap **swap)
 {
-    t_swap *last;
-    t_swap *first;
+	t_swap *last;
+	t_swap *first;
 
-    if (!*swap || !swap || !(*swap)->next)
-        return (-1);
-    first = *swap;
-    *swap = (*swap)->next;
-    first->next = NULL;
-    last = lastnode(swap);
-    last->next = first;
-    ft_printf("rb\n");
-    return (1);
+	if (!*swap || !swap || !(*swap)->next)
+		return (-1);
+	first = *swap;
+	*swap = (*swap)->next;
+	first->next = NULL;
+	last = lastnode(swap);
+	last->next = first;
+	ft_printf("rb\n");
+	count++;
+	return (1);
 }
 
 // Function to rotate both stacks a and b
 int rr(t_swap **a, t_swap **b)
 {
-    if ((ra(a) != 1) || (rb(b) != 1))
-        return (-1);
-    else
-    {
-        ft_printf("rr\n");
-        return (1);
-    }
+	if ((ra(a) != 1) || (rb(b) != 1))
+		return (-1);
+	else
+	{
+		ft_printf("rr\n");
+		count++;
+		return (1);
+	}
 }
 
 // Function to reverse rotate stack a (shift down all elements by 1)
 int rra(t_swap **swap)
 {
-    t_swap *last;
-    t_swap *nlast;
+	t_swap *last;
+	t_swap *nlast;
 
-    if (!*swap || !swap || !(*swap)->next)
-        return (-1);
-    last = lastnode(swap);
-    nlast = lastnode1(swap);
-    last->next = *swap;
-    nlast->next = NULL;
-    *swap = last;
-    ft_printf("rra\n");
-    return (1);
+	if (!*swap || !swap || !(*swap)->next)
+		return (-1);
+	last = lastnode(swap);
+	nlast = lastnode1(swap);
+	last->next = *swap;
+	nlast->next = NULL;
+	*swap = last;
+	ft_printf("rra\n");
+	count++;
+	return (1);
 }
 
 // Function to reverse rotate stack b (shift down all elements by 1)
 int rrb(t_swap **swap)
 {
-    t_swap *last;
-    t_swap *nlast;
+	t_swap *last;
+	t_swap *nlast;
 
-    if (!*swap || !swap || !(*swap)->next)
-        return (-1);
-    last = lastnode(swap);
-    nlast = lastnode1(swap);
-    last->next = *swap;
-    nlast->next = NULL;
-    *swap = last;
-    ft_printf("rrb\n");
-    return (1);
+	if (!*swap || !swap || !(*swap)->next)
+		return (-1);
+	last = lastnode(swap);
+	nlast = lastnode1(swap);
+	last->next = *swap;
+	nlast->next = NULL;
+	*swap = last;
+	ft_printf("rrb\n");
+	count++;
+	return (1);
 }
 
 // Function to reverse rotate both stacks a and b
 int rrr(t_swap **a, t_swap **b)
 {
-    if ((rra(a) != 1) || (rrb(b) != 1))
-        return (-1);
-    else
-    {
-        ft_printf("rrr\n");
-        return (1);
-    }
+	if ((rra(a) != 1) || (rrb(b) != 1))
+		return (-1);
+	else
+	{
+		ft_printf("rrr\n");
+		count++;
+		return (1);
+	}
 }
 
 /* int	main(void)

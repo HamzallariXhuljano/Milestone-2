@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:09:02 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/14 14:57:07 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/02/16 16:00:42 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_data
 	int				size_a;
 	int				size_b;
 } t_data;
-
+extern int count;
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>

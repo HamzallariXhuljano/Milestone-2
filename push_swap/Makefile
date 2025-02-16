@@ -1,4 +1,4 @@
-CC = cc
+ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 INCLUDES = -I/usr/include -Ilibft -Ilibprintf
