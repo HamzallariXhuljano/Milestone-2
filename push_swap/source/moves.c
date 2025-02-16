@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:30:58 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/16 17:36:57 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/02/16 18:55:01 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,48 +80,24 @@ int find_closest_in_a(t_swap *a, int value)
 
 int total_moves(t_swap *a, t_swap *b, int index_b)
 {
-	int moves_b;
-	int moves_a;
-	int closest;
-	int index_a;
-	int combined_moves;
-	int remaining_moves;
 	if (!b || !a)
 		return (INT_MAX);
-	// Find the closest number in Stack A
-	closest = find_closest_in_a(a, b->content);
-	index_a = 0;
-	// Find the position of the closest number in Stack A
-	t_swap *tmp = a;
-	while (tmp && tmp->content != closest)
-	{
-		index_a++;
-		tmp = tmp->next;
-	}
-	// Calculate moves for Stack B
-	if (index_b <= fft_lstsize(b) / 2)
-		moves_b = index_b;
-	else
-		moves_b = fft_lstsize(b) - index_b;
-	// Calculate moves for Stack A
-	if (index_a <= fft_lstsize(a) / 2)
-		moves_a = index_a;
-	else
-		moves_a = fft_lstsize(a) - index_a;
-	// Optimize by combining rotations
-	if ((index_b < fft_lstsize(b) / 2 && index_a < fft_lstsize(a) / 2) )
-	{
-		// Both stacks can be rotated in the same direction (rr or rrr)
-		if (moves_a < moves_b)
-			combined_moves = moves_a;
-		else
-			combined_moves = moves_b;
-		remaining_moves = abs(moves_a - moves_b);
-		return abs((combined_moves + remaining_moves));
-	}
-	else
-		return abs((moves_a + moves_b));
+
+	int size_a = fft_lstsize(a);
+	int size_b = fft_lstsize(b);
+	int closest = find_closest_in_a(a, b->content);
+	int index_aa = index_a(a, closest);
+	int moves_a = (index_aa <= size_a / 2) ? index_aa : size_a - index_aa;
+	int moves_b = (index_b <= size_b / 2) ? index_b : size_b - index_b;
+
+	// Se entrambe le posizioni sono nella prima metà o nella seconda metà, possiamo combinare le rotazioni
+	if ((index_b < size_b / 2 && index_aa < size_a / 2) ||
+		(index_b >= size_b / 2 && index_aa >= size_a / 2))
+		return (moves_a > moves_b) ? moves_a : moves_b;
+
+	return moves_a + moves_b;
 }
+
 
 
 
@@ -215,7 +191,7 @@ void movement_a(t_swap **a, int pos_a)
 	if (pos_a == 0)
 		return;
 
-	if (pos_a <= size / 2)
+	if (pos_a < size / 2)
 	{
 		// Rotate up (ra)
 		while (pos_a > 0)
@@ -328,108 +304,107 @@ void pb_only_two_a(t_swap **a, t_swap **b)
 int count = 0;
 int	main(void)
 {
-	t_swap *head = fft_lstnew(89);
-	t_swap *h2 = fft_lstnew(104);
 
-
-	t_swap *h3 = fft_lstnew(94);
-	t_swap *h4 = fft_lstnew(52);
-	t_swap *h5 = fft_lstnew(105);
-	t_swap *h6 = fft_lstnew(90);
-	t_swap *h7 = fft_lstnew(60);
-	t_swap *h8 = fft_lstnew(123);
-	t_swap *h9 = fft_lstnew(211);
-	t_swap *h10 = fft_lstnew(315);
-	t_swap *h11 = fft_lstnew(400);
-	t_swap *h12 = fft_lstnew(5);
-	t_swap *h13 = fft_lstnew(15);
-	t_swap *h14 = fft_lstnew(2);
-	t_swap *h15 = fft_lstnew(199);
-	t_swap *h16 = fft_lstnew(278);
-	t_swap *h17 = fft_lstnew(120);
-	t_swap *h18 = fft_lstnew(7);
-	t_swap *h19 = fft_lstnew(99);
-	t_swap *h20 = fft_lstnew(56);
-	t_swap *h21 = fft_lstnew(67);
-	t_swap *h22 = fft_lstnew(188);
-	t_swap *h23 = fft_lstnew(240);
-	t_swap *h24 = fft_lstnew(33);
-	t_swap *h25 = fft_lstnew(81);
-	t_swap *h26 = fft_lstnew(177);
-	t_swap *h27 = fft_lstnew(23);
-	t_swap *h28 = fft_lstnew(142);
-	t_swap *h29 = fft_lstnew(301);
-	t_swap *h30 = fft_lstnew(87);
-	t_swap *h31 = fft_lstnew(214);
-	t_swap *h32 = fft_lstnew(45);
-	t_swap *h33 = fft_lstnew(68);
-	t_swap *h34 = fft_lstnew(329);
-	t_swap *h35 = fft_lstnew(500);
-	t_swap *h36 = fft_lstnew(99);
-	t_swap *h37 = fft_lstnew(312);
-	t_swap *h38 = fft_lstnew(275);
-	t_swap *h39 = fft_lstnew(190);
-	t_swap *h40 = fft_lstnew(147);
-	t_swap *h41 = fft_lstnew(178);
-	t_swap *h42 = fft_lstnew(222);
-	t_swap *h43 = fft_lstnew(420);
-	t_swap *h44 = fft_lstnew(78);
-	t_swap *h45 = fft_lstnew(56);
-	t_swap *h46 = fft_lstnew(134);
-	t_swap *h47 = fft_lstnew(88);
-	t_swap *h48 = fft_lstnew(273);
-	t_swap *h49 = fft_lstnew(55);
-	t_swap *h50 = fft_lstnew(321);
-	t_swap *h51 = fft_lstnew(412);
-	t_swap *h52 = fft_lstnew(287);
-	t_swap *h53 = fft_lstnew(91);
-	t_swap *h54 = fft_lstnew(33);
-	t_swap *h55 = fft_lstnew(100);
-	t_swap *h56 = fft_lstnew(205);
-	t_swap *h57 = fft_lstnew(319);
-	t_swap *h58 = fft_lstnew(227);
-	t_swap *h59 = fft_lstnew(411);
-	t_swap *h60 = fft_lstnew(365);
-	t_swap *h61 = fft_lstnew(92);
-	t_swap *h62 = fft_lstnew(276);
-	t_swap *h63 = fft_lstnew(37);
-	t_swap *h64 = fft_lstnew(111);
-	t_swap *h65 = fft_lstnew(293);
-	t_swap *h66 = fft_lstnew(220);
-	t_swap *h67 = fft_lstnew(17);
-	t_swap *h68 = fft_lstnew(244);
-	t_swap *h69 = fft_lstnew(379);
-	t_swap *h70 = fft_lstnew(99);
-	t_swap *h71 = fft_lstnew(187);
-	t_swap *h72 = fft_lstnew(65);
-	t_swap *h73 = fft_lstnew(382);
-	t_swap *h74 = fft_lstnew(278);
-	t_swap *h75 = fft_lstnew(211);
-	t_swap *h76 = fft_lstnew(499);
-	t_swap *h77 = fft_lstnew(269);
-	t_swap *h78 = fft_lstnew(123);
-	t_swap *h79 = fft_lstnew(301);
-	t_swap *h80 = fft_lstnew(172);
-	t_swap *h81 = fft_lstnew(408);
-	t_swap *h82 = fft_lstnew(193);
-	t_swap *h83 = fft_lstnew(261);
-	t_swap *h84 = fft_lstnew(357);
-	t_swap *h85 = fft_lstnew(445);
-	t_swap *h86 = fft_lstnew(90);
-	t_swap *h87 = fft_lstnew(212);
-	t_swap *h88 = fft_lstnew(330);
-	t_swap *h89 = fft_lstnew(83);
-	t_swap *h90 = fft_lstnew(110);
-	t_swap *h91 = fft_lstnew(270);
-	t_swap *h92 = fft_lstnew(198);
-	t_swap *h93 = fft_lstnew(501);
-	t_swap *h94 = fft_lstnew(432);
-	t_swap *h95 = fft_lstnew(305);
-	t_swap *h96 = fft_lstnew(57);
-	t_swap *h97 = fft_lstnew(145);
-	t_swap *h98 = fft_lstnew(72);
-	t_swap *h99 = fft_lstnew(358);
-	t_swap *h100 = fft_lstnew(412);
+t_swap *head = fft_lstnew(89);
+t_swap *h2 = fft_lstnew(104);
+t_swap *h3 = fft_lstnew(94);
+t_swap *h4 = fft_lstnew(52);
+t_swap *h5 = fft_lstnew(105);
+t_swap *h6 = fft_lstnew(90);
+t_swap *h7 = fft_lstnew(60);
+t_swap *h8 = fft_lstnew(123);  // changed
+t_swap *h9 = fft_lstnew(211);  // changed
+t_swap *h10 = fft_lstnew(315);
+t_swap *h11 = fft_lstnew(401);
+t_swap *h12 = fft_lstnew(5);
+t_swap *h13 = fft_lstnew(15);
+t_swap *h14 = fft_lstnew(2);
+t_swap *h15 = fft_lstnew(199);
+t_swap *h16 = fft_lstnew(278); // changed
+t_swap *h17 = fft_lstnew(120);
+t_swap *h18 = fft_lstnew(7);
+t_swap *h19 = fft_lstnew(151); // changed
+t_swap *h20 = fft_lstnew(200); // changed
+t_swap *h21 = fft_lstnew(67);
+t_swap *h22 = fft_lstnew(188);
+t_swap *h23 = fft_lstnew(240);
+t_swap *h24 = fft_lstnew(33);
+t_swap *h25 = fft_lstnew(81);
+t_swap *h26 = fft_lstnew(177);
+t_swap *h27 = fft_lstnew(23);
+t_swap *h28 = fft_lstnew(142);
+t_swap *h29 = fft_lstnew(400); // changed
+t_swap *h30 = fft_lstnew(87);
+t_swap *h31 = fft_lstnew(214);
+t_swap *h32 = fft_lstnew(45);
+t_swap *h33 = fft_lstnew(68);
+t_swap *h34 = fft_lstnew(329);
+t_swap *h35 = fft_lstnew(500);
+t_swap *h36 = fft_lstnew(99);  // changed
+t_swap *h37 = fft_lstnew(312);
+t_swap *h38 = fft_lstnew(275);
+t_swap *h39 = fft_lstnew(190);
+t_swap *h40 = fft_lstnew(147);
+t_swap *h41 = fft_lstnew(178);
+t_swap *h42 = fft_lstnew(222);
+t_swap *h43 = fft_lstnew(420);
+t_swap *h44 = fft_lstnew(78);
+t_swap *h45 = fft_lstnew(56);  // changed
+t_swap *h46 = fft_lstnew(134);
+t_swap *h47 = fft_lstnew(88);
+t_swap *h48 = fft_lstnew(273);
+t_swap *h49 = fft_lstnew(55);
+t_swap *h50 = fft_lstnew(321);
+t_swap *h51 = fft_lstnew(412); // changed
+t_swap *h52 = fft_lstnew(287);
+t_swap *h53 = fft_lstnew(95);
+t_swap *h54 = fft_lstnew(35);
+t_swap *h55 = fft_lstnew(100);
+t_swap *h56 = fft_lstnew(205);
+t_swap *h57 = fft_lstnew(319);
+t_swap *h58 = fft_lstnew(227);
+t_swap *h59 = fft_lstnew(411);
+t_swap *h60 = fft_lstnew(365);
+t_swap *h61 = fft_lstnew(92);
+t_swap *h62 = fft_lstnew(276);
+t_swap *h63 = fft_lstnew(37);
+t_swap *h64 = fft_lstnew(111);
+t_swap *h65 = fft_lstnew(293);
+t_swap *h66 = fft_lstnew(220);
+t_swap *h67 = fft_lstnew(17);
+t_swap *h68 = fft_lstnew(244);
+t_swap *h69 = fft_lstnew(379);
+t_swap *h70 = fft_lstnew(150); // changed
+t_swap *h71 = fft_lstnew(187);
+t_swap *h72 = fft_lstnew(65);
+t_swap *h73 = fft_lstnew(382);
+t_swap *h74 = fft_lstnew(280); // changed
+t_swap *h75 = fft_lstnew(350); // changed
+t_swap *h76 = fft_lstnew(499);
+t_swap *h77 = fft_lstnew(269);
+t_swap *h78 = fft_lstnew(250); // changed
+t_swap *h79 = fft_lstnew(301); // changed
+t_swap *h80 = fft_lstnew(172);
+t_swap *h81 = fft_lstnew(408);
+t_swap *h82 = fft_lstnew(193);
+t_swap *h83 = fft_lstnew(261);
+t_swap *h84 = fft_lstnew(357);
+t_swap *h85 = fft_lstnew(445);
+t_swap *h86 = fft_lstnew(91);
+t_swap *h87 = fft_lstnew(212);
+t_swap *h88 = fft_lstnew(330);
+t_swap *h89 = fft_lstnew(83);
+t_swap *h90 = fft_lstnew(110);
+t_swap *h91 = fft_lstnew(270);
+t_swap *h92 = fft_lstnew(198);
+t_swap *h93 = fft_lstnew(501);
+t_swap *h94 = fft_lstnew(432);
+t_swap *h95 = fft_lstnew(305);
+t_swap *h96 = fft_lstnew(57);
+t_swap *h97 = fft_lstnew(145);
+t_swap *h98 = fft_lstnew(72);
+t_swap *h99 = fft_lstnew(358);
+t_swap *h100 = fft_lstnew(450); // changed
 
 	t_swap *head2 = NULL;
 
