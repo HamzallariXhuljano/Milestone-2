@@ -5,13 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2025/02/25 14:41:26 by xhamzall          #+#    #+#             */
 /*   Updated: 2025/02/25 14:41:29 by xhamzall         ###   ########.fr       */
+=======
+/*   Created: 2025/02/04 14:08:20 by tkurukul          #+#    #+#             */
+/*   Updated: 2025/02/18 19:48:50 by xhamzall         ###   ########.fr       */
+>>>>>>> 62421d0efbe919b847e2d17532740cff192b4d44
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+<<<<<<< HEAD
 // int g_move_count = 0;
 
 int	sa(t_swap *swap, int i)
@@ -83,6 +89,167 @@ int	pb(t_swap **a, t_swap **b, int i)
 	if (i == 1)
 		ft_printf("pb\n");
 	return(1);
+=======
+// Scambia i primi due elementi di stack a
+int sa(t_swap *swap)
+{
+    if (!swap || !swap->next)
+        return (-1);
+    int tmp = swap->next->content;
+    swap->next->content = swap->content;
+    swap->content = tmp;
+    ft_printf("sa\n");
+    count++;
+    return (1);
+}
+
+// Scambia i primi due elementi di stack b
+int sb(t_swap *swap)
+{
+    if (!swap || !swap->next)
+        return (-1);
+    int tmp = swap->next->content;
+    swap->next->content = swap->content;
+    swap->content = tmp;
+    ft_printf("sb\n");
+    count++;
+    return (1);
+}
+
+// Scambia i primi due elementi di entrambi gli stack a e b
+int ss(t_swap *a, t_swap *b)
+{
+    if (!a || !a->next || !b || !b->next)
+        return (-1);
+    int tmp;
+    tmp = a->next->content;
+    a->next->content = a->content;
+    a->content = tmp;
+    tmp = b->next->content;
+    b->next->content = b->content;
+    b->content = tmp;
+    ft_printf("ss\n");
+    count++;
+    return (1);
+}
+
+// Sposta il primo elemento di b su a
+int pa(t_swap **a, t_swap **b)
+{
+    if (!b || !*b)
+        return (-1);
+    t_swap *tmp = *b;
+    *b = (*b)->next;
+    tmp->next = *a;
+    *a = tmp;
+    ft_printf("pa\n");
+    count++;
+    return (1);
+}
+
+// Sposta il primo elemento di a su b
+int pb(t_swap **a, t_swap **b)
+{
+    if (!a || !*a)
+        return (-1);
+    t_swap *tmp = *a;
+    *a = (*a)->next;
+    tmp->next = *b;
+    *b = tmp;
+    ft_printf("pb\n");
+    count++;
+    return (1);
+}
+
+// Ruota stack a (shift up)
+int ra(t_swap **swap)
+{
+    if (!swap || !*swap || !(*swap)->next)
+        return (-1);
+    t_swap *first = *swap;
+    t_swap *last = lastnode(swap);
+    *swap = (*swap)->next;
+    first->next = NULL;
+    last->next = first;
+    ft_printf("ra\n");
+    count++;
+    return (1);
+}
+
+// Ruota stack b (shift up)
+int rb(t_swap **swap)
+{
+    if (!swap || !*swap || !(*swap)->next)
+        return (-1);
+    t_swap *first = *swap;
+    t_swap *last = lastnode(swap);
+    *swap = (*swap)->next;
+    first->next = NULL;
+    last->next = first;
+    ft_printf("rb\n");
+    count++;
+    return (1);
+}
+
+// Ruota entrambi gli stack a e b
+int rr(t_swap **a, t_swap **b)
+{
+    if (ra(a) != 1 || rb(b) != 1)
+        return (-1);
+    ft_printf("rr\n");
+    count++;
+    return (1);
+}
+
+// Ruota all'indietro stack a (shift down)
+int rra(t_swap **swap)
+{
+    if (!swap || !*swap || !(*swap)->next)
+        return (-1);
+    t_swap *last = lastnode(swap);
+    t_swap *nlast = lastnode1(swap);
+    nlast->next = NULL;
+    last->next = *swap;
+    *swap = last;
+    ft_printf("rra\n");
+    count++;
+    return (1);
+}
+
+// Ruota all'indietro stack b (shift down)
+int rrb(t_swap **swap)
+{
+    if (!swap || !*swap || !(*swap)->next)
+        return (-1);
+    t_swap *last = lastnode(swap);
+    t_swap *nlast = lastnode1(swap);
+    nlast->next = NULL;
+    last->next = *swap;
+    *swap = last;
+    ft_printf("rrb\n");
+    count++;
+    return (1);
+}
+
+// Ruota all'indietro entrambi gli stack a e b
+int rrr(t_swap **a, t_swap **b)
+{
+    if (!a || !b || !*a || !*b || !(*a)->next || !(*b)->next)
+        return (-1);
+    t_swap *last_a = lastnode(a);
+    t_swap *nlast_a = lastnode1(a);
+    nlast_a->next = NULL;
+    last_a->next = *a;
+    *a = last_a;
+    t_swap *last_b = lastnode(b);
+    t_swap *nlast_b = lastnode1(b);
+    nlast_b->next = NULL;
+    last_b->next = *b;
+    *b = last_b;
+    ft_printf("rrr\n");
+    count++;
+    return (1);
+>>>>>>> 62421d0efbe919b847e2d17532740cff192b4d44
 }
 
 /* int	main(void)
