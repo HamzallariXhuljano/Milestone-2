@@ -3,75 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 21:44:54 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/28 23:46:24 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/12/01 17:29:11 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/12/01 18:58:11 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* void	del(void *content)
-{
-	if (content != NULL)
-		free(content);
-} */
-
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*newnode;
-	void	*loopcont;
-	t_list	*newlist;
+	t_list	*new_lst;
+	t_list	*node;
 
-	newlist = NULL;
+	if (lst == NULL || f == NULL)
+		return (NULL);
+	node = NULL;
+	new_lst = node;
 	while (lst)
 	{
-		loopcont = f(lst -> content);
-		newnode = ft_lstnew(loopcont);
-		if (newnode == NULL)
+		node = ft_lstnew((*f)(lst -> content));
+		if (!node)
 		{
-			ft_lstclear(&newlist, del);
+			ft_lstclear(&new_lst, *del);
 			return (NULL);
 		}
-		ft_lstadd_back(&newlist, newnode);
+		ft_lstadd_back(&new_lst, node);
 		lst = lst -> next;
 	}
-	return (newlist);
+	return (new_lst);
 }
+// static void *modi(void* contetnt)
+// {
+// 	free(contetnt);
+// 	return (contetnt = ft_strdup("yeap"));
+// }
 
-/* void	*f(void *content)
-{
-	int i = 0;
-	char *str = (char *)content;
-	char	*newstr = strdup(str);
-	while (newstr[i])
-	{
-		newstr[i] = toupper(newstr[i]);
-		i++;
-	}
-	return (newstr);
-} */
+// static void del(void *content)
+// {
+// 	free(content);
+// }
 
-/* int	main(void)
-{
-	t_list	*head = ft_lstnew(ft_strdup("The"));
-	t_list	*mid = ft_lstnew(ft_strdup("Fucking"));
-	t_list	*last = ft_lstnew(ft_strdup("PC"));
-	t_list	*temp = head;
-	head -> next = mid;
-	mid -> next = last;
-	t_list	*new = ft_lstmap(head, f, del);
-	while (temp)
-	{
-		printf("%s ", (char *)temp -> content);
-		temp = temp -> next;
-	}
-	printf("\n after new alloc \n");
-	temp = new;
-	while (temp)
-	{
-		printf("%s ", (char *) temp -> content);
-		temp = temp -> next;
-	}
-} */
+// int main()
+// {
+// 	t_list *head = ft_lstnew(ft_strdup("ciaoo"));
+// 	t_list *second = ft_lstnew(ft_strdup("bella"));
+
+// 	head ->next = second;
+// 	t_list *temp = head;
+// 	while(head)
+// 	{
+// 		printf("%s\n", (char *)head->content);
+// 		head = head->next;
+// 	}
+
+// 	temp = ft_lstmap(temp, modi, del);
+// 	while(temp)
+// 	{
+// 		printf("%s\n",(char *) temp->content);
+// 		temp = temp->next;
+// 	}
+// }

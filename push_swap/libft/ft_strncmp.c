@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 10:12:21 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/20 10:31:58 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/22 13:50:32 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/27 20:34:48 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < n && s1[i] && s2[i])
+	while (i < n && s1[i] != 0 && s2[i] != 0)
 	{
 		if (s1[i] != s2[i])
 		{
-			return (((unsigned char )s1[i]) - ((unsigned char )s2[i]));
+			return (((unsigned char)s1[i] - (unsigned char)s2[i]));
 		}
 		i++;
 	}
 	if (i < n)
-		return ((unsigned char )s1[i] - (unsigned char )s2[i]);
+	{
+		return (((unsigned char)s1[i] - (unsigned char)s2[i]));
+	}
 	return (0);
 }
-/*
-int main(void)
-{
-	char 	*s1 = "ciao";
-	char	*s2 = "ciaoa";
-	printf("%d", ft_strncmp(s1, s2, 4));
-}*/
+// int main()
+// {
+// 	printf("La mia funzione stampa #### %d\n", ft_strncmp("", "", 5));
+// 	printf("La funzione di c stampa **** %d", strncmp("", ", 5));
+// }

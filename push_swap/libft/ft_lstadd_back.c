@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 23:08:05 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/04 18:59:54 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/30 21:06:26 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/12/01 18:45:45 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,39 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*temp;
 
-	if (lst == NULL || new == NULL)
+	if (new == NULL || lst == NULL)
 		return ;
 	if (*lst == NULL)
 	{
 		*lst = new;
 		return ;
 	}
-	temp = *lst;
-	while (temp -> next != NULL)
-	{
-		temp = temp -> next;
-	}
+	temp = ft_lstlast(*lst);
 	temp -> next = new;
 }
-/* void	ft_ff(t_list **lst, t_list *new)
-{
-	new -> next = *lst;
-	*lst = new;
-}
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*newnode;
+// int main()
+// {
+// 	t_list	*head = ft_lstnew("ciao");
+// 	t_list	*second = ft_lstnew("come");
+// 	t_list	*add_last = ft_lstnew("stai?");
+// 	t_list	*temp = NULL;
 
-	newnode = (t_list *)malloc(sizeof(t_list));
-	if (!newnode)
-		return (NULL);
-	newnode -> content = content;
-	newnode -> next = NULL;
-	return (newnode);
-}
-int	main(void)
-{
-	t_list	*head = ft_lstnew("World");
-	t_list	*newn = ft_lstnew("Fucking");
-	ft_ff(&head, newn);
-	t_list	*n = ft_lstnew("Hello");
-	ft_ff(&head, n);
-	t_list	*last = ft_lstnew("!g");
-	ft_lstadd_back(&head, last);
-	while (head)
-	{
-		printf("%s", (char *) head -> content);
-		head = head -> next;
-	}
-} */
+// 	head -> next = second;
+// 	temp = head;
+
+// 	while (temp)
+// 	{
+// 		printf("%s\n", (char *)temp -> content);
+// 		temp = temp -> next;
+// 	}
+
+// 	temp = head;
+// 	ft_lstadd_back(&temp, add_last);
+
+// 	while(temp)
+// 	{
+// 		printf("%s\n", (char *) temp -> content);
+// 		temp = temp -> next;
+// 	}
+
+// }

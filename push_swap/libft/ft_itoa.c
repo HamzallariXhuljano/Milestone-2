@@ -1,89 +1,94 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Untitled-1                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 15:34:51 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/23 15:34:51 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/24 19:50:56 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/27 20:18:18 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libft.h"
 
-static int	ft_counter(int n)
+static long	ft_lennum(long nb)
 {
-	int	count;
+	long	i;
 
-	count = 0;
-	if (n < 0 || (n == 0))
+	i = 0;
+	if (nb <= 0)
 	{
-		if (n == -2147483648)
-			return (11);
-		if (n < 0)
-		{
-			count++;
-			n = (n * -1);
-		}
-		if (n == 0)
-			count++;
+		i = 1;
+		if (nb == 0)
+			return (i);
+		nb = -nb;
 	}
-	while (n != 0)
+	while (nb > 0)
 	{
-		n = (n / 10);
-		count++;
+		nb = nb / 10;
+		i++;
 	}
-	return (count);
+	return (i);
 }
 
-static char	*ft_converter(int n, char *str, int len)
+static char	*ft_putnegative(long i, long nb, char *str)
 {
-	if (n == -2147483648)
+	long	j;
+
+	j = 0;
+	nb = -nb;
+	while (i > 0)
 	{
-		str[0] = 45;
-		str[1] = 50;
-		n = 147483648;
+		j = nb % 10;
+		str[i] = j + 48;
+		nb = nb / 10;
+		i--;
 	}
-	if (n < 0)
+	str[0] = '-';
+	return (str);
+}
+
+static char	*ft_putpositive(long i, long n, char *str)
+{
+	long	j;
+
+	j = 0;
+	while (i >= 0)
 	{
-		n = n * -1;
-		str[0] = 45;
+		j = n % 10;
+		str[i] = j + 48;
+		n = n / 10;
+		i--;
 	}
-	str[len] = '\0';
-	len--;
-	while (n > 9 && len >= 0)
-	{
-		str[len] = (n % 10) + 48;
-		len --;
-		n /= 10;
-	}
-	str[len] = n + 48;
 	return (str);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		count;
+	long	i;
+	long	nb;
 
-	count = ft_counter(n);
-	str = (char *)malloc((count + 1) * sizeof(char));
+	nb = n;
+	i = ft_lennum(nb);
+	str = malloc(i * sizeof(char) + 1);
 	if (str == NULL)
 		return (NULL);
-	ft_converter(n, str, (count));
+	i --;
+	if (nb < 0)
+	{
+		ft_putnegative(i, nb, str);
+	}
+	else if (nb >= 0)
+	{
+		ft_putpositive(i, nb, str);
+	}
+	str[ft_lennum(nb)] = '\0';
 	return (str);
 }
-/*
-int	main(void)
-{
-	char    *str;
-	str = (char *)ft_itoa(-1234567);
-	if (str != NULL)
-	{
-		printf("%s", str);
-		free(str);
-	}
-}*/
+// int main()
+// {
+// 	printf("%s\n",ft_itoa(-2147483648));
+// 	printf("%d\n", ft_lennum(-2147483647));
+// }

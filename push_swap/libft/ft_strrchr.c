@@ -3,35 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 10:03:09 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/26 16:47:39 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/22 12:43:11 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/27 20:36:30 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int				i;
-	unsigned char	a;
+	int	i;
 
-	a = (unsigned char)c;
-	i = 0;
-	while (s[i] != '\0')
-		i++;
+	i = ft_strlen(s);
 	while (i >= 0)
 	{
-		if ((unsigned char)s[i] == a)
+		if (s[i] == (unsigned char)c)
+		{
 			return ((char *)&s[i]);
+		}
 		i--;
 	}
-	return (0);
+	return (NULL);
 }
 /*
-int main(void)
+int main()
 {
-	char *s = "abcdefghij";
-	printf("%s", ft_strrchr(s, 'a'));
+	printf("Stampato con il c STRRCHR #### ");
+	printf("%s\n", strrchr("ciao", '\0'));
+
+	printf("Stampato con il mio FT_STRRCHR **** ");
+	printf("%s\n", ft_strrchr("ciao", '\0'));
+
 }*/

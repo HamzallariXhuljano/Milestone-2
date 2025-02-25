@@ -3,44 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:47:05 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/18 18:10:20 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/20 16:57:34 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/25 23:20:06 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
+#include "libft.h"
+#include <string.h>
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	a;
 
 	i = 0;
-	a = 0;
-	while (src[i])
-		i++;
 	if (size == 0)
-		return (i);
-	while (a < (size - 1) && src[a])
+		return (ft_strlen(src));
+	while (src[i] != '\0' && i < size - 1)
 	{
-		dst[a] = src[a];
-		a++;
+		dst[i] = src[i];
+		i++;
 	}
-	dst[a] = '\0';
-	return (i);
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }
-/*
-int	main(void)
-{
-	char	*src = "ciao";
-	char dest[2];
-	ft_strlcpy(dest, src, 2);
-
-	printf("%s", dest);
-	printf("\n%zu", ft_strlcpy(dest, src, 2));
-}
- -size > 0
--size = dest size with null byte;
--add null byte
--copy*/

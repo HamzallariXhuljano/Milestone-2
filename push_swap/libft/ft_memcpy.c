@@ -3,39 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 18:28:28 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/18 18:53:13 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/19 18:08:06 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/27 20:53:55 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t			i;
-	unsigned char	*sr;
-	unsigned char	*dea;
+	const unsigned char	*str_src;
+	unsigned char		*str_dest;
+	size_t				i;
 
-	if ((dest == NULL && src == NULL) || n == 0)
-		return (dest);
 	i = 0;
-	sr = (unsigned char *)src;
-	dea = (unsigned char *)dest;
+	str_dest = dest;
+	str_src = src;
+	if (dest == NULL && src == NULL && n > 0)
+		return (NULL);
 	while (i < n)
 	{
-		dea[i] = sr[i];
+		str_dest[i] = str_src[i];
 		i++;
 	}
 	return (dest);
 }
-/*
-int	main(void)
-{
-	char	src[] = "ciaoMUNDO";
-	char	dest[9];
+// int main()
+// {
+// 	char dest[15];
+// 	const char src[] = "Ciao a tutti!";
 
-	ft_memcpy(dest, src, 9);
-	printf("%s", dest);
-}*/
+// 	memcpy(dest,src,11);
+// 	printf("%s\n",dest);
+// }

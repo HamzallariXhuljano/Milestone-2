@@ -3,33 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 09:44:45 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/26 16:45:36 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/21 21:57:22 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/27 20:28:58 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
-	unsigned char	a;
+	size_t	i;
 
-	a = (unsigned char)c;
-	while (*s)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		if ((unsigned char)*s == a)
-			return ((char *)s);
-		s++;
+		if (s[i] == (unsigned char)c)
+		{
+			return ((char *)&s[i]);
+		}
+		i++;
 	}
-	if (a == '\0')
-		return ((char *)s);
-	return (0);
+	if ((unsigned char)c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
 }
-/*
-int main(void)
-{
-	char *s = "Findme";
-	printf("%s", ft_strchr(s, '\0'));
-}*/
+// int main()
+// {
+// 	char *str = "BONJOUR";
+// 	printf("%s\n", strchr(str, '\0'));
+// 	printf("%s\n",ft_strchr(str, '\0'));
+// }

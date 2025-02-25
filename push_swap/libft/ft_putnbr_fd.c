@@ -3,33 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 01:27:59 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/25 01:27:59 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/28 18:23:17 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/12/01 17:04:38 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+
+#include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
 	{
 		write(fd, "-2147483648", 11);
-		return ;
 	}
-	if (n < 0)
+	else if (n < 0)
 	{
-		write(fd, "-", 1);
+		write (fd, "-", 1);
 		n = -n;
+		ft_putnbr_fd(n, fd);
 	}
-	if (n > 9)
+	else if (n >= 10)
+	{
 		ft_putnbr_fd(n / 10, fd);
-	n = (n % 10) + 48;
-	write (fd, &n, 1);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else if (n < 10)
+	{
+		n = n + '0';
+		write(fd, &n, 1);
+	}
 }
-/*
-int main(void)
+
+/* int main ()
 {
-    ft_putnbr_fd(-123456, 1);
-}*/
+	int fd = open("text.txt", O_RDWR);
+	ft_putnbr_fd(-21479, fd);
+	close(fd);
+} */

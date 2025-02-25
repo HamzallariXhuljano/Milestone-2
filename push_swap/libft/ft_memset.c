@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 16:17:23 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/18 17:45:32 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/19 16:20:43 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/27 20:27:21 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <string.h>
 
-void	*ft_memset(void *str, int a, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	*s;
+	size_t	i;
+	char	*str;
 
-	s = (unsigned char *) str;
+	str = (char *)s;
 	i = 0;
 	while (i < n)
 	{
-		s[i] = (unsigned char)a;
+		str[i] = (char) c;
 		i++;
 	}
 	return (s);
 }
 /*
-int	main(void)
+int	main (void)
 {
-	char	str[10];
-	ft_memset(str, -45, 5);
-	printf("%s",str);
+	int c = 41;
+	unsigned char *s;
+	size_t n = 4;
+	printf("%s", memset(s, c, n));
 }*/

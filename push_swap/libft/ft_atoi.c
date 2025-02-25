@@ -3,42 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 15:54:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/27 20:38:01 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/22 16:50:38 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/27 20:19:46 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
 	int	i;
-	int	result;
-	int	negative;
+	int	sign;
+	int	num;
 
 	i = 0;
-	result = 0;
-	negative = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	sign = 1;
+	num = 0;
+	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
-	if (str[i] == 43 || str[i] == 45)
+	if (nptr[i] == '-')
 	{
-		if (str[i] == 45)
-			negative = negative * -1;
+		sign = -sign;
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		result = (result * 10) + (str[i] - 48);
+		num = num * 10 + (nptr[i] - 48);
 		i++;
 	}
-	return (result * negative);
+	return (num * sign);
 }
-/*
-int main(void)
-{
-	char *str = "	\n -1234 5";
-	printf("%d", ft_atoi(str));
-}*/
+
+// int main ()
+// {
+// 	printf("Mio ATOI = %d\n", ft_atoi("-asd0"));
+// 	printf("C ATOI = %d", ft_atoi("-sd0"));
+// }

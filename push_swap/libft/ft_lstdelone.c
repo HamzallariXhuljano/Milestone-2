@@ -3,64 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 15:43:19 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/28 17:44:59 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/30 22:26:01 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/12/01 18:07:27 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-t_list	*ft_lstnew(void *content)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	t_list	*newnode;
-
-	newnode = (t_list *)malloc(sizeof(t_list));
-	if (newnode == NULL)
-		return (NULL);
-	newnode -> content = content;
-	newnode -> next = NULL;
-	return (newnode);
+	if (lst == NULL || del == NULL)
+		return ;
+	del (lst -> content);
+	free (lst);
 }
-void	del(void *content)
-{
-	if (content)
-		free(content);
-} */
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (lst != NULL && del != NULL)
-	{
-		del(lst -> content);
-		free (lst);
-	}
-}
-/*
-  int	main(void)
-{
-	t_list	*head = ft_lstnew(strdup("Hello"));
-	t_list	*mid = ft_lstnew(strdup("Fuck"));
-	t_list	*last = ft_lstnew(strdup("World"));
-	head -> next = mid;
-	mid -> next = last;
-	t_list	*temp = head;
-	while (temp)
-	{
-		printf("%s", (char *)temp -> content);
-		temp = temp -> next;
-	}
-	printf("\nafter\n");
-	mid -> next = NULL;
-	ft_lstdelone(last, del);
-	temp = head;
-	while (temp)
-	{
-		printf("%s", (char *)temp -> content);
-		temp = temp -> next;
-	}
-	ft_lstdelone(mid, del);
-	ft_lstdelone(head, del);
 
-} */
+// static void	del(void *content)
+// {
+// 	content = NULL;
+// }
+
+//  int main()
+// {
+// 	t_list *head = ft_lstnew("prova");
+// 	t_list *second = ft_lstnew("da cancellare");
+
+// 	head -> next = second;
+// 	t_list *temp = head;
+// 	while (temp)
+// 	{
+// 		printf("%s\n", (char *) temp -> content);
+// 		temp = temp -> next;
+// 	}
+// 	ft_lstdelone(second, del);
+
+// 	temp = head;
+// 	while (head -> next)
+// 	{
+// 		printf("%s\n", (char *) head -> content);
+// 		head = head -> next;
+// 	}
+// 	head = temp;
+// 	free (head);
+
+// }

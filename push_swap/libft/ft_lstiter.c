@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
+/*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 19:56:32 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/28 23:45:42 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/12/01 16:32:40 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/12/01 17:29:03 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/* #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h> */
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
@@ -24,25 +20,42 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		lst = lst -> next;
 	}
 }
-/* void	f(void *content)
-{
-	char *str = (char *)content;
-	while (*str)
-	{
-		*str = toupper(*str);
-		str++;
-	}
-}
 
-int	main(void)
-{
-	t_list	*head = ft_lstnew(strdup("Hello"));
-	t_list	*node = ft_lstnew(strdup("World"));
-	head -> next = node;
-	ft_lstiter(head, f);
-	while (head)
-	{
-		printf("%s", (char *)head -> content);
-		head = head -> next;
-	}
-} */
+// static void del(void *content)
+// {
+// 	free(content);
+// 	content = ft_strdup("yesssah");
+// }
+
+// int main()
+// {
+// 	t_list *head = ft_lstnew(ft_strdup("ciao"));
+// 	t_list *second = ft_lstnew(ft_strdup("ciao1"));
+// 	t_list *last = ft_lstnew(ft_strdup("ciao2"));
+// 	t_list	*temp;
+
+// 	head -> next = second;
+// 	second -> next = last;
+// 	temp = head;
+// 	while (temp)
+// 	{
+// 		printf("%s\n", (char *)temp -> content);
+// 		temp = temp -> next;
+// 	}
+
+// 	temp = head;
+// 	ft_lstiter(head, del);
+
+// 	if (head == NULL)
+// 	{
+// 		printf("probabilmente funziona");
+// 	}
+// 	else
+// 	{
+// 		while (head)
+// 		{
+// 			printf("%s\n", (char *)head -> content);
+// 			head = head -> next;
+// 		}
+// 	}
+// }

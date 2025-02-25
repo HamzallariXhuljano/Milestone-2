@@ -3,24 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xxx <xxx@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:13:18 by tkurukul          #+#    #+#             */
-/*   Updated: 2024/11/18 15:26:40 by tkurukul         ###   ########.fr       */
+/*   Created: 2024/11/19 13:45:43 by xhamzall          #+#    #+#             */
+/*   Updated: 2024/11/26 02:36:56 by xxx              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 int	ft_isascii(int c)
 {
-	if (!((c >= 0) && (c <= 127)))
-		return (0);
-	return (1);
-}
-/*
-int	main(void)
-{
-	printf("%d", ft_isascii('\t'));
+	if (c >= 0 && c <= 127)
+	{
+		return (1);
+	}
 	return (0);
-}*/
+}
