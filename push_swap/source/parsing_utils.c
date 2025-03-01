@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/25 14:41:37 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:17:40 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	duplicates(char **matrix)
 		j = i + 1;
 		while (matrix[j])
 		{
-			if (ft_strcmp(matrix[i], matrix[j]) == 0)
+			if (ft_atoi(matrix[i]) == ft_atoi(matrix[j]))
 			{
 				write(2, "ERROR\n", 6);
 				return(0);

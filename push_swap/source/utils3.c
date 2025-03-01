@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/25 14:42:25 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:22:41 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ char	**matrix_creation(int ac, char **av)
 {
 	char	**matrix;
 
+	if (!av[1][0])
+		return (write(2, "ERROR\n", 6), NULL);
 	if (ac == 2)
 		matrix = two_args(av[1]);
 	else
 		matrix = more_args(ac, av);
+
 	return (matrix);
 }
