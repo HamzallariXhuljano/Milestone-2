@@ -6,11 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/02 01:02:56 by xhamzall         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/01 16:22:41 by xhamzall         ###   ########.fr       */
->>>>>>> 4ae3fb7d4ed63af1692d310138f13051748e72a1
+/*   Updated: 2025/03/03 17:51:53 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +73,12 @@ char	**matrix_creation(int ac, char **av)
 {
 	char	**matrix;
 
-	if (av[0][0] >= '0' && av[0][0] <= '9')
-		matrix = two_args(av[1]);
-	else
-		matrix = more_args(ac, av);
-
+	if (av[1][0] >= '0' && av[1][0] <= '9')
+	{
+		if (ac == 2)
+			matrix = two_args(av[1]);
+		else
+			matrix = more_args(ac, av);
+	}
 	return (matrix);
 }
