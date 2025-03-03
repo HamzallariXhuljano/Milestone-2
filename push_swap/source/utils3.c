@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/03 17:51:53 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:20:48 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,25 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-char	**matrix_creation(int ac, char **av)
+char	**matrix_creation(int ac, char **av, int i)
 {
 	char	**matrix;
+	int	j;
 
-	if (av[1][0] >= '0' && av[1][0] <= '9')
+	if(!av[1] || !av[1][0])
+		return(NULL);
+	j = 0;
+	while(av[1][j] == 32)
+	 	j++;
+
+	if(!av[1][j])
+		return (NULL);
+	if (ac == 2)
 	{
-		if (ac == 2)
-			matrix = two_args(av[1]);
-		else
-			matrix = more_args(ac, av);
+		matrix = two_args(av[1], i);
 	}
+	else
+		matrix = more_args(ac, av, i);
 	return (matrix);
 }
+

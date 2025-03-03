@@ -6,13 +6,13 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/01 16:17:40 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/03 19:40:32 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_arg(char **matrix)
+int	check_arg(char **matrix, int f)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,8 @@ int	check_arg(char **matrix)
 				i++;
 			else
 			{
-				write(2, "ERROR\n", 6);
+				if (f == 1)
+					write(2, "ERROR\n", 6);
 				return(0);
 			}
 		}
@@ -37,7 +38,7 @@ int	check_arg(char **matrix)
 	}
 	return (1);
 }
-int	duplicates(char **matrix)
+int	duplicates(char **matrix, int f)
 {
 	int	i;
 	int	j;
@@ -50,7 +51,8 @@ int	duplicates(char **matrix)
 		{
 			if (ft_atoi(matrix[i]) == ft_atoi(matrix[j]))
 			{
-				write(2, "ERROR\n", 6);
+				if(f == 1)
+					write(2, "ERROR\n", 6);
 				return(0);
 			}
 			j++;
@@ -59,16 +61,16 @@ int	duplicates(char **matrix)
 	}
 	return (1);
 }
-char	**two_args(char *argv)
+char	**two_args(char *argv, int i)
 {
 	char	**matrix;
 
 	matrix = ft_split(argv, 32);
-	if (check_arg(matrix) == 0 || duplicates(matrix) == 0)
+	if (check_arg(matrix, i) == 0 || duplicates(matrix, i) == 0)
 		return (free_mat(matrix), NULL);
 	return (matrix);
 }
-char	**more_args(int argc, char **av)
+char	**more_args(int argc, char **av, int f)
 {
 	int	j;
 	int	i;
@@ -88,7 +90,7 @@ char	**more_args(int argc, char **av)
 		j++;
 	}
 	matrix[j] = NULL;
-	if (check_arg(matrix) == 0 || duplicates(matrix) == 0)
+	if (check_arg(matrix, f) == 0 || duplicates(matrix, f) == 0)
 		return (free_mat(matrix), NULL);
 	return(matrix);
 }

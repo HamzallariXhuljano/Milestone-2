@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:48 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/03 17:42:34 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/03 19:06:27 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main(int ac, char **av)
 
 	b = NULL;
 	if (ac < 2)
-		return (write(2, "ERROR1\n", 6), 0);
-	matrix = matrix_creation(ac, av);
+		return (write(2, "ERROR\n", 6), 0);
+	matrix = matrix_creation(ac, av, 1);
 	if (matrix == NULL)
-		return (1);
+		return (0);
 	a = lstcreation(matrix);
 	if (!a)
 		return (0);

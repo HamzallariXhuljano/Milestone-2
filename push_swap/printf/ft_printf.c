@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 22:45:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/01/13 15:30:38 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:56:39 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static int	ft_format(char c, va_list args)
 {
-	int	cnt;
-
-	cnt = 0;
 	if (c == 'c')
 		return (ft_putchar(va_arg(args, int)));
 	else if (c == 's')

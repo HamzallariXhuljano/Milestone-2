@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:54 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/25 14:41:58 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/03 18:41:59 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int			ft_abs(int x);
 int			fft_lstsize(t_swap *lst);
 void		fft_lstadd_back(t_swap **lst, t_swap *new);
 void		free_mat(char **matrix);
-char		**more_args(int argc, char **av);
-char		**two_args(char *argv);
-int			duplicates(char **matrix);
-int			check_arg(char **matrix);
+char		**more_args(int argc, char **av, int f);
+char		**two_args(char *argv, int i);
+int			duplicates(char **matrix, int f);
+int			check_arg(char **matrix, int f);
 t_swap		*lstcreation(char **matrix);
 int			moves_b(t_swap *b, int i);
 int			moves_a(t_swap *a, int n);
@@ -82,6 +82,6 @@ void		two_check(t_swap **a);
 int			ft_strcmp(const char *s1, const char *s2);
 void		push_all(t_swap **a, t_swap **b, t_data *d);
 void		three_args(t_swap **a);
-char		**matrix_creation(int ac, char **av);
+char		**matrix_creation(int ac, char **av, int f);
 
 #endif
