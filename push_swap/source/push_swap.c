@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:48 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/03 19:06:27 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:25:28 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	if (matrix == NULL)
 		return (0);
 	a = lstcreation(matrix);
-	if (!a)
+	if (!a || (a && !(a -> next)))
 		return (0);
 	if (fft_lstsize(a) == 3)
 		return (three_args(&a), free_list(a), 0);
