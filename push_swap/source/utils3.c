@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/03 20:20:48 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 03:51:56 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,11 @@ char	**matrix_creation(int ac, char **av, int i)
 	char	**matrix;
 	int	j;
 
-	if(!av[1] || !av[1][0])
+	if(!av[1] || !av[1][0] || ((av[1][0] == '-' || av[1][0] == '+') &&!(av[1][1] >= '0' && av[1][1] <= '9')))
 		return(NULL);
 	j = 0;
-	while(av[1][j] == 32)
+	while(!(av[1][j] >= '0' && av[1][j] <= '9'))
 	 	j++;
-
 	if(!av[1][j])
 		return (NULL);
 	if (ac == 2)
