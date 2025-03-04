@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:02 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/04 15:14:54 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:35:54 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void	print_lst(t_swap *swap)
 	{
 		if (tmp->next == NULL)
 		{
-			ft_printf ("%d\n",tmp -> content);
-			break;
+			ft_printf("%d\n", tmp -> content);
+			break ;
 		}
-		ft_printf("%d--",tmp -> content);
+		ft_printf("%d--", tmp -> content);
 		tmp = tmp -> next;
 	}
 }
 
-t_swap *lastnode(t_swap **swap)
+t_swap	*lastnode(t_swap **swap)
 {
-	t_swap *tmp;
+	t_swap	*tmp;
 
 	if (!swap || !*swap)
 		return (NULL);
@@ -76,4 +76,3 @@ t_swap *lastnode(t_swap **swap)
 		tmp = tmp->next;
 	return (tmp);
 }
-

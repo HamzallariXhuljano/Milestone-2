@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/04 03:47:26 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:44:17 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,20 @@ int	check_arg(char **matrix, int f)
 			i++;
 		while (matrix[j][i])
 		{
-			if(matrix[j][i] >= '0' && matrix[j][i] <= '9')
+			if (matrix[j][i] >= '0' && matrix[j][i] <= '9')
 				i++;
 			else
 			{
 				if (f == 1)
-					write(2, "ERROR\n", 6);
-				return(0);
+					write (2, "ERROR\n", 6);
+				return (0);
 			}
 		}
 		j++;
 	}
 	return (1);
 }
+
 int	duplicates(char **matrix, int f)
 {
 	int	i;
@@ -51,9 +52,9 @@ int	duplicates(char **matrix, int f)
 		{
 			if (ft_atoi(matrix[i]) == ft_atoi(matrix[j]))
 			{
-				if(f == 1)
+				if (f == 1)
 					write(2, "ERROR\n", 6);
-				return(0);
+				return (0);
 			}
 			j++;
 		}
@@ -61,6 +62,7 @@ int	duplicates(char **matrix, int f)
 	}
 	return (1);
 }
+
 char	**two_args(char *argv, int i)
 {
 	char	**matrix;
@@ -70,10 +72,11 @@ char	**two_args(char *argv, int i)
 		return (free_mat(matrix), NULL);
 	return (matrix);
 }
+
 char	**more_args(int argc, char **av, int f)
 {
-	int	j;
-	int	i;
+	int		j;
+	int		i;
 	char	**matrix;
 
 	i = 1;
@@ -92,7 +95,7 @@ char	**more_args(int argc, char **av, int f)
 	matrix[j] = NULL;
 	if (check_arg(matrix, f) == 0 || duplicates(matrix, f) == 0)
 		return (free_mat(matrix), NULL);
-	return(matrix);
+	return (matrix);
 }
 
 t_swap	*lstcreation(char **matrix)
@@ -111,7 +114,7 @@ t_swap	*lstcreation(char **matrix)
 			return (free_mat(matrix), free_list(head), NULL);
 		new_node = fft_lstnew((int)check);
 		if (!new_node)
-			return(free_mat(matrix), free_list(head), NULL);
+			return (free_mat(matrix), free_list(head), NULL);
 		if (i == 0)
 			head = new_node;
 		else
@@ -121,4 +124,3 @@ t_swap	*lstcreation(char **matrix)
 	free_mat(matrix);
 	return (head);
 }
-

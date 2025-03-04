@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:45 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/25 14:42:47 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:54:30 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	if (!a)
 		return (0);
 	if (last(a, 0) == 1)
-		return(free_list(a), 0);
+		return (free_list(a), 0);
 	str = get_next_line(0);
 	while (str)
 	{

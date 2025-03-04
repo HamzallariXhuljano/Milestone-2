@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:54 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/03 18:41:59 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:37:14 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,6 @@
 # include "../printf/ft_printf.h"
 # include "../get_next_line/get_next_line.h"
 
-// extern int g_move_count;
-
-typedef struct s_swap
-{
-	int				content;
-	struct s_swap	*next;
-} t_swap;
-
-typedef struct s_data
-{
-	int				count_a;
-	int				count_b;
-	int				total;
-} t_data;
-
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
@@ -40,7 +25,20 @@ typedef struct s_data
 # include <ctype.h>
 # include <limits.h>
 
-t_swap		*fft_lstnew(int	content);
+typedef struct s_swap
+{
+	int				content;
+	struct s_swap	*next;
+}	t_swap;
+
+typedef struct s_data
+{
+	int				count_a;
+	int				count_b;
+	int				total;
+}	t_data;
+
+t_swap		*fft_lstnew(int content);
 void		free_list(t_swap *swap);
 void		print_lst(t_swap *swap);
 void		free_one(t_swap **swap);
