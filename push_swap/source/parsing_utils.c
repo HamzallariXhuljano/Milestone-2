@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/04 15:44:17 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:37:01 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_arg(char **matrix, int f)
 			else
 			{
 				if (f == 1)
-					write (2, "ERROR\n", 6);
+					write (2, "ERROR4\n", 6);
 				return (0);
 			}
 		}
@@ -53,7 +53,7 @@ int	duplicates(char **matrix, int f)
 			if (ft_atoi(matrix[i]) == ft_atoi(matrix[j]))
 			{
 				if (f == 1)
-					write(2, "ERROR\n", 6);
+					write(2, "ERROR3\n", 6);
 				return (0);
 			}
 			j++;

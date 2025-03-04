@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/04 16:42:42 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:41:11 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,16 @@ char	**matrix_creation(int ac, char **av, int i)
 	char	**matrix;
 	int		j;
 
-	matrix = NULL;
-	if (!av[1] || !av[1][0] || ((av[1][0] == '-' || av[1][0] == '+') && \
-		!(av[1][1] >= '0' && av[1][1] <= '9')))
-		return (write(2, "ERROR\n", 6), NULL);
+	if (!av[1] || !av[1][0])
+		return (0);
+	// if ((av[1][0] == '-' || av[1][0] == '+') && !(av[1][1] >= '0' && av[1][1] <= '9'))
+	// 	return (NULL);
 	j = 0;
 	while (av[1][j] == 32)
 		j++;
-	if (!av[1][j])
+	if(!av[1][j])
+		return (0);
+	if (!av[1][j] || !(av[1][j] >= '0' && av[1][j] <= '9'))
 		return (NULL);
 	if (ac == 2)
 		matrix = two_args(av[1], i);
