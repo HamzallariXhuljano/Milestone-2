@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:10 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/25 14:42:14 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:12:48 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ t_swap	*lastnode1(t_swap **swap)
 	t_swap	*tmp;
 
 	tmp = *swap;
-	if(!tmp || !tmp->next)
+	if (!tmp || !tmp->next)
 		return (NULL);
-	while(tmp->next->next)
+	while (tmp->next->next)
 		tmp = tmp->next;
-	return(tmp);
+	return (tmp);
 }
 
 int	smallest(t_swap *swap)
@@ -43,7 +43,7 @@ int	smallest(t_swap *swap)
 int	fft_lstsize(t_swap *lst)
 {
 	t_swap	*tmp;
-	int	i;
+	int		i;
 
 	tmp = lst;
 	i = 0;

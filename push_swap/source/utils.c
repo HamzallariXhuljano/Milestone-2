@@ -6,13 +6,13 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:02 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/25 14:42:04 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:14:54 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_swap	*fft_lstnew(int	content)
+t_swap	*fft_lstnew(int content)
 {
 	t_swap	*newnode;
 
@@ -28,16 +28,17 @@ void	free_list(t_swap *swap)
 {
 	t_swap	*tmp;
 
-	while(swap)
+	while (swap)
 	{
 		tmp = swap;
 		swap = swap->next;
 		free(tmp);
 	}
 }
+
 void	free_one(t_swap **swap)
 {
-	t_swap *tmp;
+	t_swap	*tmp;
 
 	if (swap && *swap)
 	{
@@ -50,12 +51,13 @@ void	free_one(t_swap **swap)
 void	print_lst(t_swap *swap)
 {
 	t_swap	*tmp;
+
 	tmp = swap;
 	while (tmp)
 	{
-		if(tmp->next == NULL)
+		if (tmp->next == NULL)
 		{
-			ft_printf("%d\n",tmp -> content);
+			ft_printf ("%d\n",tmp -> content);
 			break;
 		}
 		ft_printf("%d--",tmp -> content);

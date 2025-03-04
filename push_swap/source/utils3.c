@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/04 03:51:56 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:12:01 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	cal_index(t_swap *a, int n, int size)
 		i++;
 		tmp = tmp->next;
 	}
-	return(-555);
+	return (-555);
 }
 
 void	free_mat(char **matrix)
@@ -72,21 +72,19 @@ int	ft_strcmp(const char *s1, const char *s2)
 char	**matrix_creation(int ac, char **av, int i)
 {
 	char	**matrix;
-	int	j;
+	int		j;
 
-	if(!av[1] || !av[1][0] || ((av[1][0] == '-' || av[1][0] == '+') &&!(av[1][1] >= '0' && av[1][1] <= '9')))
-		return(NULL);
+	if (!av[1] || !av[1][0] || ((av[1][0] == '-' || av[1][0] == '+') && \
+		!(av[1][1] >= '0' && av[1][1] <= '9')))
+		return (NULL);
 	j = 0;
-	while(!(av[1][j] >= '0' && av[1][j] <= '9'))
-	 	j++;
-	if(!av[1][j])
+	while (!(av[1][j] >= '0' && av[1][j] <= '9'))
+		j++;
+	if (!av[1][j])
 		return (NULL);
 	if (ac == 2)
-	{
 		matrix = two_args(av[1], i);
-	}
 	else
 		matrix = more_args(ac, av, i);
 	return (matrix);
 }
-
