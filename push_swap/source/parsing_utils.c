@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 17:50:50 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:27:48 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,10 @@ int	check_arg(char **matrix, int f)
 	while (matrix[++j])
 	{
 		i = 0;
-		while (!(matrix[j][i] >= '0' && matrix[j][i] <= '9'))
-		{
-			if ((matrix[j][i] == '+' || matrix[j][i] == '-') &&
-				!(matrix[j][i + 1] >= '0' && matrix[j][i + 1] <= '9'))
-					return (0);
-			i++;
-		}
+		if ((matrix[j][i] == '+' || matrix[j][i] == '-') && \
+			!(matrix[j][i + 1] >= '0' && matrix[j][i + 1] <= '9'))
+			return (write(2, "Error\n", 6), 0);
+		i++;
 		while (matrix[j][i])
 		{
 			if (matrix[j][i] >= '0' && matrix[j][i] <= '9')
@@ -35,7 +32,7 @@ int	check_arg(char **matrix, int f)
 			else
 			{
 				if (f == 1)
-					write (2, "ERROR4\n", 6);
+					write (2, "ERROR\n", 6);
 				return (0);
 			}
 		}
@@ -116,7 +113,8 @@ t_swap	*lstcreation(char **matrix)
 	{
 		check = ft_atoi(matrix[i]);
 		if (check > INT_MAX || check < INT_MIN)
-			return (write(2, "ERROR\n", 6), free_mat(matrix), free_list(head), NULL);
+			return (write(2, "ERROR\n", 6), free_mat(matrix),
+				free_list(head), NULL);
 		new_node = fft_lstnew((int)check);
 		if (!new_node)
 			return (free_mat(matrix), free_list(head), NULL);
@@ -126,7 +124,6 @@ t_swap	*lstcreation(char **matrix)
 			fft_lstadd_back(&head, new_node);
 		i++;
 	}
-	ft_printf("%d", INT_MAX);
 	free_mat(matrix);
 	return (head);
 }

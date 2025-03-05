@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:02 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 16:16:21 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:15:47 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_swap	*fft_lstnew(int content)
 {
 	t_swap	*newnode;
-	
+
 	newnode = (t_swap *)malloc(sizeof(t_swap));
 	if (newnode == NULL)
 		return (NULL);
@@ -27,6 +27,7 @@ t_swap	*fft_lstnew(int content)
 void	free_list(t_swap *swap)
 {
 	t_swap	*tmp;
+
 	while (swap)
 	{
 		tmp = swap;
