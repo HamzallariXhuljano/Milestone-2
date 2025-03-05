@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:45 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 17:02:23 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:12:56 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	main(int ac, char **av)
 	t_swap	*b;
 
 	b = NULL;
-	if (ac < 2)
-		return (write(2, "ERROR\n", 6), 0);
+	if (ac < 2 || !av[1][0])
+		return (0);
 	matrix = matrix_creation(ac, av, 1);
 	if (matrix == NULL)
 		return (0);
