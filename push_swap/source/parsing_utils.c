@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 15:02:54 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:03:16 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int	check_arg(char **matrix, int f)
 	int	i;
 	int	j;
 
-	j = 0;
-	while (matrix[j])
+	j = -1;
+	while (matrix[++j])
 	{
 		i = 0;
 		while (matrix[j][i] == 32 && matrix[j][i])
 			i++;
-		if ((matrix[j][i] == '+' || matrix[j][i] == '-') && (matrix[j][i + 1] >= '0' && matrix[j][i + 1] <= '9'))
+		if ((matrix[j][i] == '+' || matrix[j][i] == '-') &&
+			(matrix[j][i + 1] >= '0' && matrix[j][i + 1] <= '9'))
 			i++;
 		while (matrix[j][i])
 		{
@@ -32,11 +33,10 @@ int	check_arg(char **matrix, int f)
 			else
 			{
 				if (f == 1)
-					write (2, "ERROR4\n", 6);
+					write (2, "ERROR\n", 6);
 				return (0);
 			}
 		}
-		j++;
 	}
 	return (1);
 }
@@ -55,7 +55,7 @@ int	duplicates(char **matrix, int f)
 			if (ft_atoi(matrix[i]) == ft_atoi(matrix[j]))
 			{
 				if (f == 1)
-					write(2, "ERROR3\n", 6);
+					write(2, "ERROR\n", 6);
 				return (0);
 			}
 			j++;
@@ -109,11 +109,12 @@ t_swap	*lstcreation(char **matrix)
 
 	i = 0;
 	new_node = NULL;
+	head = NULL;
 	while (matrix[i])
 	{
 		check = ft_atoi(matrix[i]);
 		if (check > INT_MAX || check < INT_MIN)
-			return (free_mat(matrix), free_list(head), NULL);
+			return (write(2, "ERROR\n", 6), free_mat(matrix), free_list(head), NULL);
 		new_node = fft_lstnew((int)check);
 		if (!new_node)
 			return (free_mat(matrix), free_list(head), NULL);

@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:39:22 by xhamzall          #+#    #+#             */
-/*   Updated: 2024/12/01 18:20:34 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:30:32 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_isprint(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_isalnum(int c);
-int		ft_atoi(const char *nptr);
+long		ft_atoi(const char *nptr);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_lstsize(t_list *lst);
