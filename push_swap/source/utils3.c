@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 14:43:04 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:14:02 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,17 @@ char	**matrix_creation(int ac, char **av, int i)
 		return (0);
 	while (!(av[1][j] >= '0' && av[1][j] <= '9') && av[1][j])
 	{
-		if ((av[1][j] == '-' || av[1][j] == '+') &&
-			(!(av[1][j + 1] >= '0' && av[1][j + 1] <= '9') || (av[1][j + 1] == '\0')))
-			return (write(2, "ERROR\n", 6), NULL);
-		else if ((av[1][j]>= 'a' && av[1][j] <= 'z') || (av[1][j]>= 'A' && av[1][j] <= 'Z'))
-			return (write(2, "ERROR\n", 6), NULL);
+		// if ((av[1][j] == '-' || av[1][j] == '+') &&
+		// 	(!(av[1][j + 1] >= '0' && av[1][j + 1] <= '9') ||
+		// 		(av[1][j + 1] == '\0')))
+		// 	return (write(2, "ERROR\n", 6), NULL);
+		// else if ((av[1][j]>= 'a' && av[1][j] <= 'z') ||
+		// 	(av[1][j]>= 'A' && av[1][j] <= 'Z'))
+		// 	return (write(2, "ERROR\n", 6), NULL);
 		j++;
 	}
-	if (!av[1][j])
-		return (NULL);
+	// if (!av[1][j])
+	// 	return (NULL);
 	if (!(av[1][j] >= '0' && av[1][j] <= '9'))
 		return (write(2, "ERROR\n", 6), NULL);
 	if (ac == 2)
