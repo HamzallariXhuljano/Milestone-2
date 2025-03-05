@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:23 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 17:39:10 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:08:35 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**matrix_creation(int ac, char **av, int i)
 		j++;
 	}
 	if (!av[1][j])
-		return (NULL);
+		return (write(2, "Error\n", 6), NULL);
 	if (!(av[1][j] >= '0' && av[1][j] <= '9'))
 		return (write(2, "ERROR\n", 6), NULL);
 	if (ac == 2)

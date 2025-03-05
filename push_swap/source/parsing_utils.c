@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:34 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 17:35:47 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:50:50 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ int	check_arg(char **matrix, int f)
 	while (matrix[++j])
 	{
 		i = 0;
-		while (matrix[j][i] == 32 && matrix[j][i])
+		while (!(matrix[j][i] >= '0' && matrix[j][i] <= '9'))
+		{
+			if ((matrix[j][i] == '+' || matrix[j][i] == '-') &&
+				!(matrix[j][i + 1] >= '0' && matrix[j][i + 1] <= '9'))
+					return (0);
 			i++;
-		if ((matrix[j][i] == '+' || matrix[j][i] == '-') &&
-			(matrix[j][i + 1] >= '0' && matrix[j][i + 1] <= '9'))
-			i++;
+		}
 		while (matrix[j][i])
 		{
 			if (matrix[j][i] >= '0' && matrix[j][i] <= '9')
