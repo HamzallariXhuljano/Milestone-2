@@ -6,7 +6,7 @@
 #    By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/25 15:39:35 by xhamzall          #+#    #+#              #
-#    Updated: 2025/02/25 15:43:09 by xhamzall         ###   ########.fr        #
+#    Updated: 2025/03/01 21:24:30 by xhamzall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ GNL = get_next_line/
 GNL_SRC = get_next_line.c get_next_line_utils.c
 
 SRCDIR = source/
-SRC =
+SRC = source/pipex.c
 
 #BONUSDIR = bonus/
 #BONUS = bonus/checker.c
@@ -72,9 +72,9 @@ $(OBJ_DIR)/%.o: $(SRCDIR)%.c
 #	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 # GNL
-#$(OBJ_DIR)/%.o: $(GNL)%.c
-#	mkdir -p $(OBJ_DIR)
-#	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+$(OBJ_DIR)/%.o: $(GNL)%.c
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
 	@$(MAKE) clean -C $(LIBFTDIR)

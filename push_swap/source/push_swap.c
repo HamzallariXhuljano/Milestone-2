@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:41:48 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 17:00:52 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/04 20:39:29 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	main(int ac, char **av)
 	t_data	d;
 
 	b = NULL;
-	if (ac < 2 || (av[1][0] == '\0'))
+	if (ac < 2 || !av[1][0])
 		return (0);
 	matrix = matrix_creation(ac, av, 1);
 	if (matrix == NULL)
-		return (0);
+		return (write(2, "ERROR1\n", 6),0);
 	a = lstcreation(matrix);
 	if (!a || (a && !(a -> next)))
 		return (free_list(a), 0);
@@ -36,6 +36,6 @@ int	main(int ac, char **av)
 	push_all(&a, &b, &d);
 	final_rotation(&a);
 	if (is_sorted(&a) == 0)
-		write(2, "ERROR\n", 6);
+		write(2, "ERROR3\n", 6);
 	return (free_list(a), 0);
 }
