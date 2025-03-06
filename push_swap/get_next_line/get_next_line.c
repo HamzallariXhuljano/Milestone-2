@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 23:13:13 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/02/25 14:38:46 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:28:24 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	str_dest = dest;
 	str_src = src;
-	if (dest == NULL && src == NULL && n > 0)
+	if ((dest == NULL && src == NULL) && n > 0)
 		return (NULL);
 	while (i < n)
 	{
@@ -114,6 +114,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
+	str = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	str = read_ln(fd, str);
@@ -123,7 +124,7 @@ char	*get_next_line(int fd)
 	if (!line || line[0] == '\0')
 		return (free(str), str = NULL, free (line), NULL);
 	str = prev(str);
-	return (line);
+	return (free(str), line);
 }
 // int	main(void)
 // {

@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:42:45 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/05 18:12:56 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:15:38 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	main(int ac, char **av)
 	if (matrix == NULL)
 		return (0);
 	a = lstcreation(matrix);
-	if (!a)
-		return (0);
+	if (!a || !a-> next)
+		return (free_list(a), 0);
 	if (last(a, 0) == 1)
 		return (free_list(a), 0);
 	str = get_next_line(0);
