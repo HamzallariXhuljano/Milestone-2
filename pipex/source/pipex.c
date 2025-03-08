@@ -6,17 +6,17 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:49:20 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/08 22:16:00 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/08 23:59:12 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	pid_t p_child_one;
-	pid_t p_child_two;
-	int	pipefd[2];
+	pid_t	p_child_one;
+	pid_t	p_child_two;
+	int		pipefd[2];
 
 	if (ac != 5)
 	{
@@ -26,7 +26,7 @@ int main(int ac, char **av, char **envp)
 	if (pipe(pipefd) == -1)
 		ft_errors("Faild pipe");
 	p_child_one = fork();
-	if(p_child_one < 0)
+	if (p_child_one < 0)
 		ft_errors("Error fork child 1");
 	if (p_child_one == 0)
 		child_one(pipefd, av, envp);
@@ -36,9 +36,6 @@ int main(int ac, char **av, char **envp)
 	if (p_child_two == 0)
 		child_two(pipefd, av, envp);
 	close_pipe(pipefd);
-	if(waitpid(p_child_one, NULL, 0) == -1|| waitpid(p_child_two, NULL, 0) == -1)
-		ft_errors("Waitpid faild");
+	fater(p_child_one, p_child_two);
 	return (EXIT_SUCCESS);
 }
-
-

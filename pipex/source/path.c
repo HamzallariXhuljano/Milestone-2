@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:48:00 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/08 22:19:56 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/09 00:15:51 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 char	*path_evnp(char **evnp)
 {
-	int i = 0;
-	while(evnp[i])
+	int	i;
+
+	i = 0;
+	while (evnp[i])
 	{
-		if(ft_strncmp(evnp[i], "PATH=", 5) == 0)
+		if (ft_strncmp(evnp[i], "PATH=", 5) == 0)
 		{
 			return ((evnp[i] + 5));
 		}
@@ -26,26 +28,26 @@ char	*path_evnp(char **evnp)
 	return (NULL);
 }
 
-char *make_path(char *dir, char *cmd )
+char	*make_path(char *dir, char *cmd )
 {
-	char *cur_path;
+	char	*cur_path;
 
-	cur_path = malloc(ft_strlen(dir) + ft_strlen(cmd)  + 2);
+	cur_path = malloc(ft_strlen(dir) + ft_strlen(cmd) + 2);
 	if (!cur_path)
 	{
 		perror("Path allocation faild");
-		return(free(cur_path), NULL);
+		return (free(cur_path), NULL);
 	}
 	ft_strcpy(cur_path, dir);
 	ft_strcat(cur_path, "/");
 	ft_strcat(cur_path, cmd);
-	return(cur_path);
+	return (cur_path);
 }
 
-char **get_path(char **evnp)
+char	**get_path(char **evnp)
 {
-	char *evnp_path;
-	char **path;
+	char	*evnp_path;
+	char	**path;
 
 	evnp_path = path_evnp(evnp);
 	if (!evnp_path)
@@ -62,10 +64,10 @@ char **get_path(char **evnp)
 	return (path);
 }
 
-char *get_comand_path(char *cmd, char **path)
+char	*get_comand_path(char *cmd, char **path)
 {
-	char *full_path;
-	int	i;
+	char	*full_path;
+	int		i;
 
 	i = 0;
 	while (path && path[i])
@@ -73,7 +75,7 @@ char *get_comand_path(char *cmd, char **path)
 		full_path = make_path(path[i], cmd);
 		if (!full_path)
 		{
-			return(NULL);
+			return (NULL);
 		}
 		if (access(full_path, X_OK) == 0)
 		{
@@ -99,5 +101,5 @@ char	*find_path(char *cmd, char **envp)
 	full_path = get_comand_path(cmd, path);
 	if (!full_path)
 		return (NULL);
-	return(full_path);
+	return (full_path);
 }

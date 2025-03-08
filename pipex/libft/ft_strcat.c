@@ -6,11 +6,11 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 17:56:19 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/08 22:23:42 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/08 23:47:59 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strcat(char *dest, const char *src)
+char	*ft_strcat(char *dest, const char *src)
 {
 	int	i;
 	int	j;

@@ -6,16 +6,15 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:31:53 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/08 22:12:28 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/09 00:07:15 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-void	child_one(int *pipefd, char **av,  char **envp)
+void	child_one(int *pipefd, char **av, char **envp)
 {
-	int fd;
+	int	fd;
 
 	close(pipefd[0]);
 	fd = read_file(av[1]);
@@ -24,7 +23,6 @@ void	child_one(int *pipefd, char **av,  char **envp)
 		perror("dup2 child 1 faild");
 		exit(EXIT_FAILURE);
 	}
-
 	close(fd);
 	close(pipefd[1]);
 	execution(av[2], envp);
@@ -44,4 +42,11 @@ void	child_two(int *pipefd, char **av, char **evnp)
 	close (fd);
 	close(pipefd[0]);
 	execution(av[3], evnp);
+}
+
+void	fater(int p_child_one, int p_child_two)
+{
+	if (waitpid(p_child_one, NULL, 0) == -1 || \
+		waitpid(p_child_two, NULL, 0) == -1)
+		ft_errors("Waitpid faild");
 }

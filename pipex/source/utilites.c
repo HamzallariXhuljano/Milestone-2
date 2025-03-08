@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:44:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/08 22:29:28 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/09 00:04:40 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	execution(char *cmd, char **envp)
 	path = find_path(av[0], envp);
 	if (!path)
 	{
-		free_matrix (av);
-		// perror("Comand execution Faild");
+		free_matrix(av);
 		exit(EXIT_FAILURE);
 	}
 	execve(path, av, envp);
@@ -37,7 +36,7 @@ void	execution(char *cmd, char **envp)
 	exit(EXIT_FAILURE);
 }
 
-void	free_matrix (char **matrix)
+void	free_matrix(char **matrix)
 {
 	int	i;
 
