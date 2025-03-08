@@ -6,7 +6,7 @@
 #    By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/25 15:39:35 by xhamzall          #+#    #+#              #
-#    Updated: 2025/03/01 21:24:30 by xhamzall         ###   ########.fr        #
+#    Updated: 2025/03/08 21:37:00 by xhamzall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ GNL = get_next_line/
 GNL_SRC = get_next_line.c get_next_line_utils.c
 
 SRCDIR = source/
-SRC = source/pipex.c
+SRC = source/pipex.c operation_file.c path.c process.c utilites.c
 
 #BONUSDIR = bonus/
 #BONUS = bonus/checker.c
