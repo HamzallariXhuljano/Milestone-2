@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:48:00 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/09 00:15:51 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:56:24 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ char	*path_evnp(char **evnp)
 
 char	*make_path(char *dir, char *cmd )
 {
-	char	*cur_path;
+	char	*path;
 
-	cur_path = malloc(ft_strlen(dir) + ft_strlen(cmd) + 2);
-	if (!cur_path)
+	path = malloc(ft_strlen(dir) + ft_strlen(cmd) + 2);
+	if (!path)
 	{
 		perror("Path allocation faild");
-		return (free(cur_path), NULL);
+		return (free(path), NULL);
 	}
-	ft_strcpy(cur_path, dir);
-	ft_strcat(cur_path, "/");
-	ft_strcat(cur_path, cmd);
-	return (cur_path);
+	ft_strcpy(path, dir);
+	ft_strcat(path, "/");
+	ft_strcat(path, cmd);
+	return (path);
 }
 
 char	**get_path(char **evnp)
@@ -53,6 +53,7 @@ char	**get_path(char **evnp)
 	if (!evnp_path)
 	{
 		perror("PATH not found");
+		free(evnp);
 		return (NULL);
 	}
 	path = ft_split(evnp_path, ':');
@@ -60,6 +61,7 @@ char	**get_path(char **evnp)
 	{
 		perror("Split don't work as expect");
 		free_matrix(path);
+		return (NULL);
 	}
 	return (path);
 }
@@ -75,6 +77,7 @@ char	*get_comand_path(char *cmd, char **path)
 		full_path = make_path(path[i], cmd);
 		if (!full_path)
 		{
+			free (full_path);
 			return (NULL);
 		}
 		if (access(full_path, X_OK) == 0)
@@ -97,9 +100,15 @@ char	*find_path(char *cmd, char **envp)
 
 	path = get_path(envp);
 	if (!path)
+	{
+		free_matrix (path);
 		return (NULL);
+	}
 	full_path = get_comand_path(cmd, path);
 	if (!full_path)
+	{
+		free (path);
 		return (NULL);
+	}
 	return (full_path);
 }
