@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/18 13:52:47 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:13:52 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ char	**dup_map(char *file, t_map *map)
 	int		i;
 
 	i = 0;
-	map->new_map = malloc(count_line(file, map) * sizeof(char *) + 1);
+	map->new_map = malloc((count_line(file, map)+1) * sizeof(char *));
 	if (!map->new_map)
 		return (NULL);
 	while (map->grid[i])
 	{
 		map->new_map[i] = ft_strdup(map -> grid[i]);
+		if(!map->new_map[i])
+			return (free_matrix(map->new_map), NULL);
 		i++;
 	}
 	map->new_map[i] = NULL;
@@ -34,6 +36,8 @@ void	find_pos(t_map *map)
 	int	x;
 	int	y;
 
+	if(!map || !map->grid)
+		return;
 	y = 0;
 	while (map->grid[y])
 	{
@@ -55,7 +59,7 @@ void	find_pos(t_map *map)
 int	valid_pos(size_t x, size_t y, t_map *map)
 {
 
-	if ((x > map-> width - 1) || (y > map -> height - 1))//possibile errore provare con -1
+	if ((x > map-> width) || (y > map -> height))//possibile errore provare con -1
 		return (-1);
 	if(map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
 		return (-1);
@@ -64,6 +68,9 @@ int	valid_pos(size_t x, size_t y, t_map *map)
 
 int	back_tracking(int x, int y, t_map *map)
 {
+	if (valid_pos(x, y, map) != 0)
+		return (1);
+	printf("%c\n", map->new_map[y][x]);
 	if(map -> new_map[y][x] == 'C')
 		map-> cnt_coll += 1;
 	if(map -> new_map[y][x] == 'E')
@@ -81,15 +88,17 @@ int	back_tracking(int x, int y, t_map *map)
 
 }
 
-int	validate_map(t_map *map)
+int	validate_map(char *file, t_map *map)
 {
-	dup_map("test.txt", map);
+	if(!dup_map(file, map))
+		return (write(2, "Error: dup map\n", 15), -1);
 	find_pos(map);
-	if (map-> cnt_coll != map->collectibles || map->exit != '1')
-		back_tracking(map->play_x, map->play_y, map);
-	back_tracking(map->play_x, map -> play_y, map);
-	if(map -> collectibles == map -> cnt_coll &&
-		map -> exit == '1')
+	map ->cnt_coll = 0;
+	map-> exit = 0;
+	back_tracking(map->play_x, map->play_y, map);
+	ft_printf("Cnt_coll= %d\n", map->cnt_coll);
+	ft_printf("colll= %d\n", map->collectibles);
+	if ((map -> collectibles == map -> cnt_coll) && (map -> exit == 1))
 		return (free_matrix(map -> new_map), 0);
 	else
 	{
@@ -116,7 +125,9 @@ int	main(int ac, char **av)
 	ft_printf("PE= %d\n", num_line);
 	num_line = check_c(&map);
 	ft_printf("C= %d\n", num_line);
-	num_line = validate_map(&map);
-	ft_printf("Valid= %d\n");
+	num_line = validate_map(av[1],&map);
+	ft_printf("Valid= %d\n", num_line);
+	ft_printf("Cnt_exit= %d\n", map.exit);
+	ft_printf("Cnt_coll= %d\n", map.cnt_coll);
 	fflush(stdout);
 }

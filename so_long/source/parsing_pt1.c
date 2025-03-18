@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:19:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/18 13:35:10 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:48:44 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ int	count_line(char *file, t_map *map)
 	int		fd;
 	char	*line;
 
+	if (check_open(file) != 0)
+		return(write(2, "Error: open file\n", 17), -1);
 	fd = open(file, O_RDONLY);
-
 	map-> height = 0;
 	line = get_next_line(fd);
+	if(!line)
+		return (write(2, "Error: empty\n", 13), close(fd), -1);
 	map -> width = ft_strlen(line);
 	while (line != NULL)
 	{
 		if (map -> width != ft_strlen(line) && (line[0] != '\n'))
-			return (write(2, "ErroR1\n", 7), free(line), close(fd), -1);
+			return (write(2, "Error: line\n", 17), free(line), close(fd), -1);
 		if (line[0] != '\n')
 			map-> height ++;
 		free(line);
@@ -55,17 +58,19 @@ char **read_map(char *file, t_map *map)
 	int		i;
 	char	*line;
 
-	map -> grid = malloc(count_line(file, map) * sizeof(char *) + 1);
+	map -> grid = malloc((count_line(file, map) + 1)* sizeof(char *));
 	if (!map -> grid)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (free(map->grid), write(2, "Error: open\n", 12), NULL);
 	line = get_next_line(fd);
 	i = 0;
 	while (line != NULL)
 	{
 		map -> grid[i] = ft_strdup(line);
+		if(!map->grid[i])
+			return(free_matrix(map->grid), write(2,"Error1\n", 7), NULL);
 		free (line);
 		line = get_next_line(fd);
 		i++ ;
@@ -87,11 +92,11 @@ int	check_wall(t_map *map)
 		while (map->grid[i][j] && map->grid[i][j] != '\n')
 		{
 			if (i == 0 && map->grid[i][j] != '1')
-				return(write(2, "Error\n", 6), -1);
+				return(write(2, "Error2\n", 7), -1);
 			if(j == 0 && map->grid[i][j] != '1')
-				return(write(2, "Error\n", 6), -1);
+				return(write(2, "Error3\n", 7), -1);
 			if((j == ft_strlen(map->grid[i])) && (map->grid[i][ft_strlen(map->grid[i])] != '1'))
-				return(write(2, "Error\n", 6), -1);
+				return(write(2, "Error4\n", 7), -1);
 			j++;
 		}
 		i++;
