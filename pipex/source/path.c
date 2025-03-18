@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:48:00 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/09 18:56:24 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/09 19:23:44 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*find_path(char *cmd, char **envp)
 	full_path = get_comand_path(cmd, path);
 	if (!full_path)
 	{
-		free (path);
+		free (full_path);
 		return (NULL);
 	}
 	return (full_path);
