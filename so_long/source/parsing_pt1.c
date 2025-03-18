@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:19:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/18 16:48:44 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:23:37 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ int	check_open(char *file)
 	int		fd;
 	size_t	len;
 
+	if (!file || ft_strlen(file) < 4)
+		return (write(2,"Error: file name\n", 17), -1);
 	len = ft_strlen(file) - 4;// .ber
 	if (ft_strncmp(file + len,  ".ber", 4) != 0)
-		return (write(2, "Error\n", 6), -1);
+		return (write(2, "Error: extention\n", 17), -1);
 	fd = open(file, O_RDONLY);
 	if(fd < 0 )
-		return (write(2, "Error\n", 6), -1);
+		return (write(2, "Error: open\n", 12), -1);
 	return (0);
 }
 
@@ -63,7 +65,7 @@ char **read_map(char *file, t_map *map)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (free(map->grid), write(2, "Error: open\n", 12), NULL);
+		return (free_matrix(map -> grid),write(2, "Error: open\n", 12), NULL);
 	line = get_next_line(fd);
 	i = 0;
 	while (line != NULL)
@@ -91,11 +93,13 @@ int	check_wall(t_map *map)
 		j = 0;
 		while (map->grid[i][j] && map->grid[i][j] != '\n')
 		{
-			if (i == 0 && map->grid[i][j] != '1')
+			if ((i == 0) && map->grid[i][j] != '1')
+				return(write(2, "Error2\n", 7), -1);
+			if ((i == map-> height - 1) && map->grid[i][j] != '1')
 				return(write(2, "Error2\n", 7), -1);
 			if(j == 0 && map->grid[i][j] != '1')
 				return(write(2, "Error3\n", 7), -1);
-			if((j == ft_strlen(map->grid[i])) && (map->grid[i][ft_strlen(map->grid[i])] != '1'))
+			if((j == ft_strlen(map->grid[i]) - 1) && (map->grid[i][j] != '1'))
 				return(write(2, "Error4\n", 7), -1);
 			j++;
 		}

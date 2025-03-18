@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/18 17:13:52 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:04:43 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	back_tracking(int x, int y, t_map *map)
 {
 	if (valid_pos(x, y, map) != 0)
 		return (1);
-	printf("%c\n", map->new_map[y][x]);
 	if(map -> new_map[y][x] == 'C')
 		map-> cnt_coll += 1;
 	if(map -> new_map[y][x] == 'E')
@@ -96,8 +95,6 @@ int	validate_map(char *file, t_map *map)
 	map ->cnt_coll = 0;
 	map-> exit = 0;
 	back_tracking(map->play_x, map->play_y, map);
-	ft_printf("Cnt_coll= %d\n", map->cnt_coll);
-	ft_printf("colll= %d\n", map->collectibles);
 	if ((map -> collectibles == map -> cnt_coll) && (map -> exit == 1))
 		return (free_matrix(map -> new_map), 0);
 	else
@@ -130,4 +127,5 @@ int	main(int ac, char **av)
 	ft_printf("Cnt_exit= %d\n", map.exit);
 	ft_printf("Cnt_coll= %d\n", map.cnt_coll);
 	fflush(stdout);
+	free_matrix(map.grid);
 }
