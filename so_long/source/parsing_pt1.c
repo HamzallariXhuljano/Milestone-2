@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:19:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/17 09:04:52 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:35:10 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,21 +173,21 @@ int	sign(t_map *map)
 	return (write(2, "Error\n", 6), -1);
 }
 
-// int	main(int ac, char **av)
-// {
-// 	t_map map;
-// 	int	num_line;
+/* int	main(int ac, char **av)
+{
+	t_map map;
+	int	num_line;
 
-// 	if (ac < 2)
-// 		return (1);
-// 	num_line = count_line(av[1], &map);
-// 	if (num_line == -1)
-// 		return (-1);
-// 	ft_printf("%d\n", num_line);
-// 	map.grid = read_map(av[1], &map);
-// 	num_line = check_wall(&map);
-// 	num_line = check_pe(&map);
-// 	ft_printf("%d\n", num_line);
-// 	num_line = check_c(&map);
-// 	ft_printf("%d\n", num_line);
-// }
+	if (ac < 2)
+		return (1);
+	num_line = count_line(av[1], &map);
+	if (num_line == -1)
+		return (-1);
+	ft_printf("Line=%d\n", num_line);
+	map.grid = read_map(av[1], &map);
+	num_line = check_wall(&map);
+	num_line = check_pe(&map);
+	ft_printf("P&E= %d\n", num_line);
+	num_line = check_c(&map);
+	ft_printf("C= %d\n", num_line);
+} */

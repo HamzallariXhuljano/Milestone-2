@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:43:54 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/09 00:16:24 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:16:03 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	close_pipe(int *pipefd);
 void	child_one(int *pipefd, char **av, char **envp);
 void	child_two(int *pipefd, char **av, char **evnp);
 void	ft_errors(char *error);
-void	fater(int p_child_one, int p_child_two);
+void	fater(int p_child_one, int p_child_two, int *pipefd);
 
 #endif

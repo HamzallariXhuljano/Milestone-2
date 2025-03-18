@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/17 16:39:49 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:52:47 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	valid_pos(size_t x, size_t y, t_map *map)
 
 	if ((x > map-> width - 1) || (y > map -> height - 1))//possibile errore provare con -1
 		return (-1);
-	else if(map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
+	if(map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
 		return (-1);
 	return (0);
 }
@@ -70,21 +70,22 @@ int	back_tracking(int x, int y, t_map *map)
 		map -> exit += 1;
 	map -> new_map[y][x] = 'X';
 	if(valid_pos((x + 1), y, map) == 0)
-		back_tracking(x + 1, y, map);
+		back_tracking((x + 1), y, map);
 	if(valid_pos((x - 1), y, map) == 0)
-		back_tracking(x - 1, y, map);
-	if(valid_pos(x, y + 1, map) == 0)
-		back_tracking(x , y + 1, map);
-	if(valid_pos(x, y - 1, map) == 0)
-		back_tracking(x, y - 1 , map);
+		back_tracking((x - 1), y, map);
+	if(valid_pos(x, (y + 1), map) == 0)
+		back_tracking(x , (y + 1), map);
+	if(valid_pos(x, (y - 1), map) == 0)
+		back_tracking(x, (y - 1 ), map);
 	return(0);
 
 }
 
 int	validate_map(t_map *map)
 {
+	dup_map("test.txt", map);
 	find_pos(map);
-	if (map-> collectibles != map->collectibles || map->exit != '1')
+	if (map-> cnt_coll != map->collectibles || map->exit != '1')
 		back_tracking(map->play_x, map->play_y, map);
 	back_tracking(map->play_x, map -> play_y, map);
 	if(map -> collectibles == map -> cnt_coll &&
@@ -108,13 +109,14 @@ int	main(int ac, char **av)
 	num_line = count_line(av[1], &map);
 	if (num_line == -1)
 		return (-1);
-	ft_printf("%d\n", num_line);
+	ft_printf("Line = %d\n", num_line);
 	map.grid = read_map(av[1], &map);
-	// num_line = check_wall(&map);
-	// num_line = check_pe(&map);
-	// ft_printf("%d\n", num_line);
+	num_line = check_wall(&map);
+	num_line = check_pe(&map);
+	ft_printf("PE= %d\n", num_line);
 	num_line = check_c(&map);
-	// ft_printf("%d\n", num_line);
+	ft_printf("C= %d\n", num_line);
 	num_line = validate_map(&map);
-	ft_printf("%d\n");
+	ft_printf("Valid= %d\n");
+	fflush(stdout);
 }

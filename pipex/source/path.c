@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:48:00 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/09 19:23:44 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:26:01 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*make_path(char *dir, char *cmd )
 	if (!path)
 	{
 		perror("Path allocation faild");
-		return (free(path), NULL);
+		return (free (path), NULL);
 	}
 	ft_strcpy(path, dir);
 	ft_strcat(path, "/");
@@ -53,7 +53,7 @@ char	**get_path(char **evnp)
 	if (!evnp_path)
 	{
 		perror("PATH not found");
-		free(evnp);
+		free(evnp_path);
 		return (NULL);
 	}
 	path = ft_split(evnp_path, ':');

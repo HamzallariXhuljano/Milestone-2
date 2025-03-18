@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:31:53 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/09 00:07:15 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:15:49 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ void	child_two(int *pipefd, char **av, char **evnp)
 	execution(av[3], evnp);
 }
 
-void	fater(int p_child_one, int p_child_two)
+void	fater(int p_child_one, int p_child_two, int *pipefd)
 {
+	close_pipe(pipefd);
 	if (waitpid(p_child_one, NULL, 0) == -1 || \
 		waitpid(p_child_two, NULL, 0) == -1)
 		ft_errors("Waitpid faild");
