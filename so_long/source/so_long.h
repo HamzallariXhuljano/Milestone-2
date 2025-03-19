@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 13:09:06 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/17 16:07:58 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/19 21:54:04 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,11 @@ char **read_map(char *file, t_map *map);
 int	check_c(t_map *map);
 void	init(t_game *game);
 void	free_matrix (char **mat);
+int	back_tracking(int x, int y, t_map *map);
+int	validate_map(char *file, t_map *map);
+char	**dup_map(char *file, t_map *map);
+void	find_pos(t_map *map);
+int	valid_pos(size_t x, size_t y, t_map *map);
+int	sign(t_map *map);
 
 #endif

@@ -5,66 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/18 18:04:43 by xhamzall         ###   ########.fr       */
+/*   Created: 2025/03/19 21:13:11 by xhamzall          #+#    #+#             */
+/*   Updated: 2025/03/19 22:27:50 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-char	**dup_map(char *file, t_map *map)
-{
-	int		i;
-
-	i = 0;
-	map->new_map = malloc((count_line(file, map)+1) * sizeof(char *));
-	if (!map->new_map)
-		return (NULL);
-	while (map->grid[i])
-	{
-		map->new_map[i] = ft_strdup(map -> grid[i]);
-		if(!map->new_map[i])
-			return (free_matrix(map->new_map), NULL);
-		i++;
-	}
-	map->new_map[i] = NULL;
-	return (map->new_map);
-}
-
-void	find_pos(t_map *map)
-{
-	int	x;
-	int	y;
-
-	if(!map || !map->grid)
-		return;
-	y = 0;
-	while (map->grid[y])
-	{
-		x = 0;
-		while (map->grid[y][x])
-		{
-			if (map->grid[y][x]== 'P')
-			{
-				map-> play_x = x;
-				map -> play_y = y;
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-int	valid_pos(size_t x, size_t y, t_map *map)
-{
-
-	if ((x > map-> width) || (y > map -> height))//possibile errore provare con -1
-		return (-1);
-	if(map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
-		return (-1);
-	return (0);
-}
 
 int	back_tracking(int x, int y, t_map *map)
 {
@@ -84,7 +30,6 @@ int	back_tracking(int x, int y, t_map *map)
 	if(valid_pos(x, (y - 1), map) == 0)
 		back_tracking(x, (y - 1 ), map);
 	return(0);
-
 }
 
 int	validate_map(char *file, t_map *map)
@@ -105,6 +50,22 @@ int	validate_map(char *file, t_map *map)
 	return (0);
 }
 
+int	chack_all(char *file, t_map *map)
+{
+	if (read_map(file, map) == NULL)
+		return (write(2, "Error1\n", 8), -1);
+	if (check_wall(map) == -1)
+		return (write(2, "Error2\n", 8), -1);
+	if (check_c(map) == -1)
+		return (write(2, "Error3\n", 8), -1);
+	if (check_pe(map) == -1)
+		return (write(2, "Error4\n", 8), -1);
+	if (sign(map) == -1)
+		return (write(2, "Error5\n", 8), -1);
+	if (validate_map(file, map) == -1)
+		return (write(2, "Error6\n", 8), -1);
+	return (0);
+}
 int	main(int ac, char **av)
 {
 	t_map map;
@@ -114,6 +75,8 @@ int	main(int ac, char **av)
 		return (1);
 	num_line = count_line(av[1], &map);
 	if (num_line == -1)
+		return (-1);
+	if (chack_all(av[1], &map) == -1)
 		return (-1);
 	ft_printf("Line = %d\n", num_line);
 	map.grid = read_map(av[1], &map);

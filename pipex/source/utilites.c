@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:44:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/10 13:18:51 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:59:33 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	execution(char *cmd, char **envp)
 		free_matrix(av);
 		exit(EXIT_FAILURE);
 	}
-	execve(path, av, envp);
+	 execve(path, av, envp);
 	perror("Execution failed");
 	free(path);
 	free_matrix(av);
