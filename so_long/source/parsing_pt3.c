@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:13:11 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/19 22:27:50 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:17:04 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	validate_map(char *file, t_map *map)
 		return (free_matrix(map -> new_map), 0);
 	else
 	{
-		write(2, "Error, backtraking\n", 19);
 		return(free_matrix(map -> new_map), -1);
 	}
 	return (0);

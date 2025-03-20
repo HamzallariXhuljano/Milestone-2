@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:19:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/19 22:09:00 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:02:55 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,12 @@ char **read_map(char *file, t_map *map)
 }
 int	check_wall(t_map *map)
 {
-	size_t		i;
-	size_t		j;
-
+	size_t	i;
+	size_t	j;
+	size_t	len;
 	i = 0;
+
+	len = ft_strlen(map->grid[i]) - 2;
 	while (map->grid[i])
 	{
 		j = 0;
@@ -101,7 +103,7 @@ int	check_wall(t_map *map)
 				return(-1);
 			if(j == 0 && map->grid[i][j] != '1')
 				return(-1);
-			if((j == ft_strlen(map->grid[i]) - 1) && (map->grid[i][j] != '1'))
+			if(((j == len) && (map->grid[i][j] != '1')))
 				return(-1);
 			j++;
 		}
@@ -126,15 +128,15 @@ int	check_pe(t_map *map)
 		while (map -> grid[i][j])
 		{
 			if (map -> grid[i][j] == 'P')
-				p = 1;
+				p++;
 			if (map -> grid[i][j] == 'E')
-				e = 1;
-			if (e == 1 && p == 1)
-				return (0);
+				e++;
 			j++;
 		}
 		i++;
 	}
+	if (e == 1 && p == 1)
+		return (0);
 	return (-1);
 }
 
