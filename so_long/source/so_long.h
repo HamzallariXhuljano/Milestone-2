@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 13:09:06 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/19 21:54:04 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/22 03:46:26 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_game
 	t_map	map;
 	void	*player_img;
 	void	*wall_img;
+	void	*back_img;
 	void	*collect_img;
 	void	*exit_img;
 	int		moves;
@@ -70,5 +71,9 @@ char	**dup_map(char *file, t_map *map);
 void	find_pos(t_map *map);
 int	valid_pos(size_t x, size_t y, t_map *map);
 int	sign(t_map *map);
+int	chack_all(char *file, t_map *map);
+void	*load_texture(void *mlx, char *path);
+void load_map(t_game *game, char *filename);
+void render_map(t_game *game);
 
 #endif

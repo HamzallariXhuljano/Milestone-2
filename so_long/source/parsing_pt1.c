@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:19:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/20 16:02:55 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:22:57 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_open(char *file)
 	fd = open(file, O_RDONLY);
 	if(fd < 0 )
 		return (-1);
-	return (0);
+	return (fd);
 }
 
 int	count_line(char *file, t_map *map)
@@ -33,7 +33,7 @@ int	count_line(char *file, t_map *map)
 	int		fd;
 	char	*line;
 
-	if (check_open(file) != 0)
+	if (check_open(file) < 0)
 		return(write(2, "Error7\n", 7), -1);
 	fd = open(file, O_RDONLY);
 	map-> height = 0;
@@ -41,7 +41,7 @@ int	count_line(char *file, t_map *map)
 	if(!line)
 		return (write(2, "Error9\n", 7), close(fd), -1);
 	map -> width = ft_strlen(line);
-	while (line != NULL)
+	while (line)
 	{
 		if (map -> width != ft_strlen(line) && (line[0] != '\n'))
 			return (write(2, "Error10\n", 8), free(line), close(fd), -1);
@@ -64,8 +64,8 @@ char **read_map(char *file, t_map *map)
 
 	map -> grid = malloc((count_line(file, map) + 1)* sizeof(char *));
 	if (!map -> grid)
-		return (NULL);
-	fd = open(file, O_RDONLY);
+		return (free_matrix(map->grid), NULL);
+	fd = check_open(file);
 	if (fd < 0)
 		return (free_matrix(map -> grid),write(2, "Error: open\n", 12), NULL);
 	line = get_next_line(fd);
@@ -73,9 +73,9 @@ char **read_map(char *file, t_map *map)
 	while (line != NULL)
 	{
 		map -> grid[i] = ft_strdup(line);
+		free (line);
 		if(!map->grid[i])
 			return(free_matrix(map->grid), write(2,"Error1\n", 7), NULL);
-		free (line);
 		line = get_next_line(fd);
 		i++ ;
 	}
@@ -84,6 +84,8 @@ char **read_map(char *file, t_map *map)
 	close (fd);
 	return (map -> grid);
 }
+
+
 int	check_wall(t_map *map)
 {
 	size_t	i;

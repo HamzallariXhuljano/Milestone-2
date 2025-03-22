@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 17:01:17 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/18 18:02:57 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/22 05:14:00 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_matrix (char **mat)
 	}
 	while(mat[i])
 	{
+		printf("Freeing: %p -> %s\n", mat[i], mat[i]);
 		free(mat[i]);
 		i ++;
 	}

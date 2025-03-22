@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/19 22:47:52 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/22 20:10:44 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ char	**dup_map(char *file, t_map *map)
 	i = 0;
 	map->new_map = malloc((count_line(file, map)+1) * sizeof(char *));
 	if (!map->new_map)
-		return (NULL);
-	while (map->grid[i])
+		return (free_matrix(map->new_map), NULL);
+	while (i < count_line(file, map))
 	{
 		map->new_map[i] = ft_strdup(map -> grid[i]);
 		if(!map->new_map[i])
