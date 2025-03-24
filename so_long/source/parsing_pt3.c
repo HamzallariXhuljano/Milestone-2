@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:13:11 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/22 20:19:17 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/22 21:20:19 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,45 +68,34 @@ int	chack_all(char *file, t_map *map)
 		return (write(2, "Error6\n", 8), free_matrix(map->grid),-1);
 	return (0);
 }
-int main(int ac, char **av)
-{
-    t_map map;
-    int num_line;
+// int main(int ac, char **av)
+// {
+//     t_map map;
+//     int num_line;
 
-    if (ac < 2)
-        return (1);
+//     if (ac < 2)
+//         return (1);
 
-    num_line = count_line(av[1], &map);
-    if (num_line == -1)
-        return (-1);
+//     num_line = count_line(av[1], &map);
+//     if (num_line == -1)
+//         return (-1);
 
-    if (chack_all(av[1], &map) == -1)
-    {
-        free_matrix(map.grid); // Free grid if validation fails
-        return (-1);
-    }
+//     if (chack_all(av[1], &map) == -1)
+//     {
+//         return (-1); // map.grid is already freed in chack_all
+//     }
 
-    ft_printf("Line = %d\n", num_line);
-    map.grid = read_map(av[1], &map);
-    if (!map.grid)
-        return (free_matrix(map.grid), -1);
+//     ft_printf("Line = %d\n", num_line);
+//     ft_printf("PE= %d\n", check_pe(&map));
+//     ft_printf("C= %d\n", map.collectibles);
 
-    num_line = check_wall(&map);
-    num_line = check_pe(&map);
-    ft_printf("PE= %d\n", num_line);
-    num_line = check_c(&map);
-    ft_printf("C= %d\n", num_line);
-    num_line = validate_map(av[1], &map);
+//     ft_printf("Cnt_exit= %d\n", map.exit);
+//     ft_printf("Cnt_coll= %d\n", map.cnt_coll);
+//     fflush(stdout);
 
-    ft_printf("Valid= %d\n", num_line);
-    ft_printf("Cnt_exit= %d\n", map.exit);
-    ft_printf("Cnt_coll= %d\n", map.cnt_coll);
-    fflush(stdout);
-
-    // Free the grid at the end of the program
-	map.new_map = NULL;
-    free_matrix(map.grid);
-    return (0);
-}
+//     // Free the grid at the end of the program
+//     free_matrix(map.grid);
+//     return (0);
+// }
 
 
