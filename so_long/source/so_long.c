@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:11:33 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/22 22:30:45 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:42:23 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int ac, char **av)
 		return(write(2, "Error13\n", 8), -1);
 	game.wall_img = load_texture(game.mlx, "textures/wall_64x64.xpm");
 	game.back_img = load_texture(game.mlx, "textures/grass.xpm");
-	game.player_img = load_texture(game.mlx, "textures/naruto2.xpm");
+	game.player_img = load_texture(game.mlx, "textures/big_naruto.xpm");
 	game.collect_img = load_texture(game.mlx, "textures/ramen.xpm");
 	game.exit_img = load_texture(game.mlx, "textures/porta.xpm");
 	render_map(&game);
