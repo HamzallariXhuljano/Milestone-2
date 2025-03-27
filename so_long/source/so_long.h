@@ -6,13 +6,19 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 13:09:06 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/22 03:46:26 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:22:28 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # define IMG_WIN
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+
 
 # include "../libft/libft.h"
 # include "../printf/ft_printf.h"
@@ -72,8 +78,14 @@ void	find_pos(t_map *map);
 int	valid_pos(size_t x, size_t y, t_map *map);
 int	sign(t_map *map);
 int	chack_all(char *file, t_map *map);
-void	*load_texture(void *mlx, char *path);
-void load_map(t_game *game, char *filename);
-void render_map(t_game *game);
+void	put_map(t_game *game);
+void	*texture_creation(void *mlx, char *path);
+void	put_img(t_game *game);
+int	key_hook(int keycode, t_game *game);
+void	move_player(t_game *game, size_t new_x, size_t new_y);
+int close_window(t_game *game);
+void free_resources(t_game *game);
+int	chek_move(t_game *game, size_t new_x, size_t new_y);
+void	win_exit(t_game *game);
 
 #endif

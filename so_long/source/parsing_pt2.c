@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/22 20:10:44 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:28:03 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	find_pos(t_map *map)
 int	valid_pos(size_t x, size_t y, t_map *map)
 {
 
-	if ((x > map-> width) || (y > map -> height))//possibile errore provare con -1
+	if ((x >= map-> width) || (y >= map -> height))//possibile errore provare con -1
 		return (-1);
 	if(map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
 		return (-1);
