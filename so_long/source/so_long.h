@@ -6,19 +6,12 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 13:09:06 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 16:57:39 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:03:51 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define IMG_WIN
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_ESC 65307
-
 
 # include "../libft/libft.h"
 # include "../printf/ft_printf.h"
@@ -35,6 +28,7 @@
 # include <fcntl.h>
 # include <ctype.h>
 # include <limits.h>
+#include "mlx.h"
 
 typedef	struct s_map
 {

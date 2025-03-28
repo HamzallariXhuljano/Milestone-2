@@ -6,17 +6,12 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:31:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/28 18:01:47 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:03:46 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "mlx.h"
+
 
 void	*texture_creation(void *mlx, char *path, t_game *game)
 {
