@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:54:03 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 16:58:11 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:57:31 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int main(int argc, char **argv)
     // Check and parse the map
     if (chack_all(argv[1], &(game.map)) == -1)
     {
-        ft_printf("Error: Invalid map\n");
         return (1);
     }
 

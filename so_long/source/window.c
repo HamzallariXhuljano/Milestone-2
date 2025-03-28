@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:31:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 16:49:08 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:01:47 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,11 @@ int key_hook(int keycode, t_game *game)
 	else if (keycode == XK_s)
 		move_player(game, game -> map.play_x , game -> map.play_y + 1);
 	else if (keycode == XK_a)
-	{
-		printf("A");
-		fflush(stdout);
 		move_player(game, game -> map.play_x - 1, game -> map.play_y);
-	}
 	else if (keycode == XK_d)
 		move_player(game, game -> map.play_x + 1, game -> map.play_y);
+	else if (keycode == XK_Escape)
+		close_window(game);
 	return (0);
 }
 
