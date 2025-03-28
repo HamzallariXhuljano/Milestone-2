@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:19:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/25 19:20:07 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:40:17 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	count_line(char *file, t_map *map)
 	while (line)
 	{
 		if (map -> width != ft_strlen(line) - 1 && (line[0] != '\n'))
-			return (write(2, "Error10\n", 8), free(line), close(fd), -1);
+			return (write(2, "Error10\n", 8),free(line), close(fd), -1);
 		if (line[0] != '\n')
 			map-> height ++;
 		else
@@ -52,7 +52,6 @@ int	count_line(char *file, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
-
 	close (fd);
 	return (map->height);
 }
@@ -81,7 +80,6 @@ char **read_map(char *file, t_map *map)
 		i++ ;
 	}
 	map -> grid[i] = NULL;
-	free(line);
 	close (fd);
 	return (map -> grid);
 }

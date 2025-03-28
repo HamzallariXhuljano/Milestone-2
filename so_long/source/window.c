@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:31:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 15:27:33 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:49:08 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <string.h>
 #include "mlx.h"
 
-void	*texture_creation(void *mlx, char *path)
+void	*texture_creation(void *mlx, char *path, t_game *game)
 {
 	int width;
 	int height;
@@ -27,6 +27,8 @@ void	*texture_creation(void *mlx, char *path)
 	if (!img)
 	{
 		printf("Errore: impossibile caricare la texture %s\n", path);
+		//free_matrix(game->map.grid);
+		destroy_img(game);
 		exit(1);
 	}
 	printf("Texture %s caricata con successo!\n", path);
@@ -34,11 +36,11 @@ void	*texture_creation(void *mlx, char *path)
 }
 void	put_img(t_game *game)
 {
-	game -> wall_img = texture_creation(game -> mlx, "textures/wall_64x64.xpm");
-	game -> back_img = texture_creation(game -> mlx, "textures/grass.xpm");
-	game->player_img = texture_creation(game->mlx, "textures/big_naruto.xpm");
-	game->collect_img = texture_creation(game->mlx, "textures/ramen.xpm");
-	game->exit_img = texture_creation(game->mlx, "textures/porta.xpm");
+	game -> wall_img = texture_creation(game -> mlx, "textures/wall_64x64.xpm", game);
+	game -> back_img = texture_creation(game -> mlx, "textures/grass.xpm", game);
+	game->player_img = texture_creation(game->mlx, "textures/big_naruto.xpm", game);
+	game->collect_img = texture_creation(game->mlx, "textures/ramen.xpm", game);
+	game->exit_img = texture_creation(game->mlx, "textures/porta.xpm", game);
 }
 
 void	put_map(t_game *game)

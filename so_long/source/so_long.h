@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 13:09:06 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 15:22:28 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:57:39 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,14 @@ int	valid_pos(size_t x, size_t y, t_map *map);
 int	sign(t_map *map);
 int	chack_all(char *file, t_map *map);
 void	put_map(t_game *game);
-void	*texture_creation(void *mlx, char *path);
+void	*texture_creation(void *mlx, char *path, t_game *game);
 void	put_img(t_game *game);
 int	key_hook(int keycode, t_game *game);
 void	move_player(t_game *game, size_t new_x, size_t new_y);
-int close_window(t_game *game);
-void free_resources(t_game *game);
 int	chek_move(t_game *game, size_t new_x, size_t new_y);
 void	win_exit(t_game *game);
+void destroy_img(t_game *game);
+void	destroy_win(t_game *game);
+int close_window(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:13:11 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/25 19:28:04 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:40:39 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	validate_map(char *file, t_map *map)
 
 int	chack_all(char *file, t_map *map)
 {
+	if (count_line(file, map) == -1)
+		return(-1);
 	if (read_map(file, map) == NULL)
 		return (write(2, "Error1\n", 8), free_matrix(map->grid),-1);
 	if (check_wall(map) == -1)

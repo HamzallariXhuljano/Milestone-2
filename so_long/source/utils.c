@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 17:01:17 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 15:24:32 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:57:22 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,26 @@ void	win_exit(t_game *game)
 		ft_printf("GG\n");
 		close_window(game);
 	}
+}
+int	check_img(char *file)
+{
+	int		fd;
+	size_t	len;
+
+	if (!file || ft_strlen(file) < 4)
+		return (-1);
+	len = ft_strlen(file) - 4;// .ber
+	if (ft_strncmp(file + len,  ".xpm", 4) != 0)
+		return (-1);
+	fd = open(file, O_RDONLY);
+	if(fd < 0 )
+		return (-1);
+	return (fd);
+}
+int close_window(t_game *game)
+{
+    //free_resources(game);
+	destroy_img(game);
+    exit(0);
+    return (0);
 }

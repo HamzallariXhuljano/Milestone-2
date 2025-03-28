@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:54:03 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 14:54:11 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:58:11 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int main(int argc, char **argv)
     if (!game.win)
     {
         ft_printf("Error: Failed to create window\n");
+        // Don't call destroy_img here, just clean up what we've created so far
         mlx_destroy_display(game.mlx);
         free(game.mlx);
         free_matrix(game.map.grid);
@@ -72,20 +73,15 @@ int main(int argc, char **argv)
     mlx_loop(game.mlx);
 
     // This code is never reached due to mlx_loop, but good practice
-    free_resources(&game);
+    destroy_img(&game);
     return (0);
 }
 
 // Add this function to handle window close button
-int close_window(t_game *game)
-{
-    free_resources(game);
-    exit(0);
-    return (0);
-}
+
 
 // Add this function to free resources
-void free_resources(t_game *game)
+/*void free_resources(t_game *game)
 {
     if (!game)
         return;
@@ -115,4 +111,4 @@ void free_resources(t_game *game)
         mlx_destroy_display(game->mlx);
         free(game->mlx);
     }
-}
+}*/
