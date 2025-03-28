@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 17:01:17 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 16:57:22 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:48:13 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	win_exit(t_game *game)
 {
 	if(game->map.collectibles == 0)
 	{
-		ft_printf("GG\n");
+		ft_printf("GG YOU WIN!!!\n");
 		close_window(game);
 	}
 }

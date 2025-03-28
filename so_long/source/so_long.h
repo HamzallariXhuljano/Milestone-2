@@ -6,18 +6,18 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 13:09:06 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/28 18:03:51 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:42:33 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
 # include "../libft/libft.h"
 # include "../printf/ft_printf.h"
 # include "../get_next_line/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
+#include "mlx.h"
 
 # include <X11/keysymdef.h>
 # include <X11/keysym.h>
@@ -28,7 +28,6 @@
 # include <fcntl.h>
 # include <ctype.h>
 # include <limits.h>
-#include "mlx.h"
 
 typedef	struct s_map
 {

@@ -6,7 +6,7 @@
 #    By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 15:37:02 by xhamzall          #+#    #+#              #
-#    Updated: 2025/03/27 15:53:15 by xhamzall         ###   ########.fr        #
+#    Updated: 2025/03/28 22:47:38 by xhamzall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ GNL_SRC = get_next_line.c get_next_line_utils.c
 
 SRCDIR = source/
 SRC = so_long.c parsing_pt1.c window.c utils.c parsing_pt2.c parsing_pt3.c \
-	main.c destroy.c
+	destroy.c
 #BONUSDIR = bonus/
 #BONUS = bonus/checker.c
 

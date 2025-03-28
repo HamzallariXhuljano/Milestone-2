@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:31:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/28 18:03:46 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:45:44 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,6 @@ void	put_map(t_game *game)
 
 int key_hook(int keycode, t_game *game)
 {
-
-
-	printf("Tasto premuto: %d\n", keycode);
-	printf("Posizione attuale: x= %d, y =%d\n", game-> map.play_x, game -> map.play_y);
 	if (keycode == XK_w)
 		move_player(game, game -> map.play_x, game -> map.play_y - 1);
 	else if (keycode == XK_s)
@@ -111,7 +107,7 @@ void	move_player(t_game *game, size_t new_x, size_t new_y)
 	game->map.play_x = new_x;
 	game->map.play_y = new_y;
 	game->moves++;
-	ft_printf("%d\n", game->moves);
+	ft_printf("Mosse: %d\n", game->moves);
 	put_map(game);
 }
 
