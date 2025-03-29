@@ -6,73 +6,69 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:31:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/28 22:45:44 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:45:41 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
 void	*texture_creation(void *mlx, char *path, t_game *game)
 {
-	int width;
-	int height;
-	void *img = mlx_xpm_file_to_image(mlx, path, &width, &height);
+	int		width;
+	int		height;
+	void	*img;
 
+	img = mlx_xpm_file_to_image(mlx, path, &width, &height);
 	if (!img)
 	{
 		printf("Errore: impossibile caricare la texture %s\n", path);
-		//free_matrix(game->map.grid);
 		destroy_img(game);
 		exit(1);
 	}
 	printf("Texture %s caricata con successo!\n", path);
-	return img;
+	return (img);
 }
+
 void	put_img(t_game *game)
 {
-	game -> wall_img = texture_creation(game -> mlx, "textures/wall_64x64.xpm", game);
-	game -> back_img = texture_creation(game -> mlx, "textures/grass.xpm", game);
-	game->player_img = texture_creation(game->mlx, "textures/big_naruto.xpm", game);
-	game->collect_img = texture_creation(game->mlx, "textures/ramen.xpm", game);
-	game->exit_img = texture_creation(game->mlx, "textures/porta.xpm", game);
+	game -> wall_img = texture_creation(game -> mlx,
+			"textures/wall_64x64.xpm", game);
+	game -> back_img = texture_creation(game -> mlx,
+			"textures/grass.xpm", game);
+	game->player_img = texture_creation(game->mlx,
+			"textures/big_naruto.xpm", game);
+	game->collect_img = texture_creation(game->mlx,
+			"textures/ramen.xpm", game);
+	game->exit_img = texture_creation(game->mlx,
+			"textures/porta.xpm", game);
 }
 
 void	put_map(t_game *game)
 {
-	size_t x;
-	size_t y;
+	size_t	x;
+	size_t	y;
 
 	if (!game->map.grid || !game->mlx || !game->win)
 		return ;
 	y = 0;
 	while (y < game->map.height)
 	{
-		 x = 0;
+		x = 0;
 		while (x < game->map.width)
 		{
-			if (game->map.grid[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->wall_img, x * 64, y * 64);
-			else if (game->map.grid[y][x] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, game->back_img, x * 64, y * 64);
-			else if (game->map.grid[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, game->player_img, x * 64, y * 64);
-			else if (game->map.grid[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->collect_img, x * 64, y * 64);
-			else if (game->map.grid[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->exit_img, x * 64, y * 64);
+			img_to_win(game, x, y);
 			x++;
 		}
 		y++;
 	}
 }
 
-int key_hook(int keycode, t_game *game)
+int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == XK_w)
 		move_player(game, game -> map.play_x, game -> map.play_y - 1);
 	else if (keycode == XK_s)
-		move_player(game, game -> map.play_x , game -> map.play_y + 1);
+		move_player(game, game -> map.play_x, game -> map.play_y + 1);
 	else if (keycode == XK_a)
 		move_player(game, game -> map.play_x - 1, game -> map.play_y);
 	else if (keycode == XK_d)
@@ -82,16 +78,15 @@ int key_hook(int keycode, t_game *game)
 	return (0);
 }
 
-
 void	move_player(t_game *game, size_t new_x, size_t new_y)
 {
 	char	pos;
 
 	if (chek_move(game, new_x, new_y) == -1)
-		return;
+		return ;
 	pos = game->map.grid[new_y][new_x];
 	if (pos == '1')
-		return;
+		return ;
 	if (pos == 'E')
 	{
 		win_exit(game);
@@ -110,5 +105,3 @@ void	move_player(t_game *game, size_t new_x, size_t new_y)
 	ft_printf("Mosse: %d\n", game->moves);
 	put_map(game);
 }
-
-

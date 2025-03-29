@@ -6,13 +6,13 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 15:40:09 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 16:34:15 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:20:54 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void destroy_img(t_game *game)
+void	destroy_img(t_game *game)
 {
 	if (game -> back_img)
 		mlx_destroy_image(game-> mlx, game -> back_img);
@@ -30,10 +30,10 @@ void destroy_img(t_game *game)
 void	destroy_win(t_game *game)
 {
 	if (!game)
-		return;
+		return ;
 	if (game->map.grid)
 		free_matrix(game->map.grid);
-	if(game->map.new_map)
+	if (game->map.new_map)
 		free_matrix(game->map.new_map);
 	if (game -> win)
 		mlx_destroy_window(game -> mlx, game -> win);

@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:19:41 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/28 17:40:17 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:46:58 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	check_open(char *file)
 
 	if (!file || ft_strlen(file) < 4)
 		return (-1);
-	len = ft_strlen(file) - 4;// .ber
-	if (ft_strncmp(file + len,  ".ber", 4) != 0)
+	len = ft_strlen(file) - 4;
+	if (ft_strncmp(file + len, ".ber", 4) != 0)
 		return (-1);
 	fd = open(file, O_RDONLY);
-	if(fd < 0 )
+	if (fd < 0)
 		return (-1);
 	return (fd);
 }
@@ -34,17 +34,17 @@ int	count_line(char *file, t_map *map)
 	char	*line;
 
 	if (check_open(file) < 0)
-		return(write(2, "Error7\n", 7), -1);
+		return (write(2, "Error7\n", 7), -1);
 	fd = open(file, O_RDONLY);
-	map-> height = 0;
+	map -> height = 0;
 	line = get_next_line(fd);
-	if(!line)
+	if (!line)
 		return (write(2, "Error9\n", 7), close(fd), -1);
 	map -> width = ft_strlen(line) -1;
 	while (line)
 	{
 		if (map -> width != ft_strlen(line) - 1 && (line[0] != '\n'))
-			return (write(2, "Error10\n", 8),free(line), close(fd), -1);
+			return (write(2, "Error10\n", 8), free(line), close(fd), -1);
 		if (line[0] != '\n')
 			map-> height ++;
 		else
@@ -56,26 +56,26 @@ int	count_line(char *file, t_map *map)
 	return (map->height);
 }
 
-char **read_map(char *file, t_map *map)
+char	**read_map(char *file, t_map *map)
 {
 	int		fd;
 	int		i;
 	char	*line;
 
-	map -> grid = malloc((count_line(file, map) + 1)* sizeof(char *));
+	map -> grid = malloc((count_line(file, map) + 1) * sizeof(char *));
 	if (!map -> grid)
 		return (free_matrix(map->grid), NULL);
 	fd = check_open(file);
 	if (fd < 0)
-		return (free_matrix(map -> grid),write(2, "Error: open\n", 12), NULL);
+		return (free_matrix(map -> grid), write(2, "Error: open\n", 12), NULL);
 	line = get_next_line(fd);
 	i = 0;
 	while (line != NULL)
 	{
 		map -> grid[i] = ft_strdup(line);
 		free (line);
-		if(!map->grid[i])
-			return(free_matrix(map->grid), write(2,"Error1\n", 7), NULL);
+		if (!map->grid[i])
+			return (free_matrix(map -> grid), write(2, "Error1\n", 7), NULL);
 		line = get_next_line(fd);
 		i++ ;
 	}
@@ -84,28 +84,27 @@ char **read_map(char *file, t_map *map)
 	return (map -> grid);
 }
 
-
 int	check_wall(t_map *map)
 {
 	size_t	i;
 	size_t	j;
 	size_t	len;
-	i = 0;
 
+	i = 0;
 	len = ft_strlen(map->grid[i]) - 2;
 	while (map->grid[i])
 	{
 		j = 0;
 		while (map->grid[i][j] && map->grid[i][j] != '\n')
 		{
-			if ((i == 0) && map->grid[i][j] != '1')
-				return(-1);
-			if ((i == map-> height - 1) && map->grid[i][j] != '1')
-				return(-1);
-			if(j == 0 && map->grid[i][j] != '1')
-				return(-1);
-			if(((j == len) && (map->grid[i][j] != '1')))
-				return(-1);
+			if ((i == 0) && map -> grid[i][j] != '1')
+				return (-1);
+			if ((i == map -> height - 1) && map->grid[i][j] != '1')
+				return (-1);
+			if (j == 0 && map -> grid[i][j] != '1')
+				return (-1);
+			if (((j == len) && (map -> grid[i][j] != '1')))
+				return (-1);
 			j++;
 		}
 		i++;
@@ -118,7 +117,7 @@ int	check_pe(t_map *map)
 	int	i;
 	int	j;
 	int	p;
-	int e;
+	int	e;
 
 	i = 0;
 	p = 0;
@@ -140,23 +139,3 @@ int	check_pe(t_map *map)
 		return (0);
 	return (-1);
 }
-
-
-/* int	main(int ac, char **av)
-{
-	t_map map;
-	int	num_line;
-
-	if (ac < 2)
-		return (1);
-	num_line = count_line(av[1], &map);
-	if (num_line == -1)
-		return (-1);
-	ft_printf("Line=%d\n", num_line);
-	map.grid = read_map(av[1], &map);
-	num_line = check_wall(&map);
-	num_line = check_pe(&map);
-	ft_printf("P&E= %d\n", num_line);
-	num_line = check_c(&map);
-	ft_printf("C= %d\n", num_line);
-} */

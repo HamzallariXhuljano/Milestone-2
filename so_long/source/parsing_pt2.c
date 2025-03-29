@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/27 15:28:03 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:27:40 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ char	**dup_map(char *file, t_map *map)
 	int		i;
 
 	i = 0;
-	map->new_map = malloc((count_line(file, map)+1) * sizeof(char *));
+	map -> new_map = malloc((count_line(file, map) + 1) * sizeof(char *));
 	if (!map->new_map)
 		return (free_matrix(map->new_map), NULL);
 	while (i < count_line(file, map))
 	{
 		map->new_map[i] = ft_strdup(map -> grid[i]);
-		if(!map->new_map[i])
+		if (!map->new_map[i])
 			return (free_matrix(map->new_map), NULL);
 		i++;
 	}
@@ -59,17 +59,17 @@ void	find_pos(t_map *map)
 	int	x;
 	int	y;
 
-	if(!map || !map->grid)
-		return;
+	if (!map || !map->grid)
+		return ;
 	y = 0;
 	while (map->grid[y])
 	{
 		x = 0;
 		while (map->grid[y][x])
 		{
-			if (map->grid[y][x]== 'P')
+			if (map -> grid[y][x] == 'P')
 			{
-				map-> play_x = x;
+				map -> play_x = x;
 				map -> play_y = y;
 				return ;
 			}
@@ -81,10 +81,9 @@ void	find_pos(t_map *map)
 
 int	valid_pos(size_t x, size_t y, t_map *map)
 {
-
-	if ((x >= map-> width) || (y >= map -> height))//possibile errore provare con -1
+	if ((x >= map -> width) || (y >= map -> height))
 		return (-1);
-	if(map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
+	if (map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
 		return (-1);
 	return (0);
 }
@@ -103,7 +102,7 @@ int	sign(t_map *map)
 			if (map -> grid[i][j] == 'C' || map -> grid[i][j] == 'E' || \
 				map -> grid[i][j] == 'P' || map -> grid[i][j] == '1' || \
 				map -> grid[i][j] == '0' || map -> grid[i][j] == '\n')
-					j++;
+				j++;
 			else
 				return (-1);
 		}
@@ -113,4 +112,3 @@ int	sign(t_map *map)
 		return (map -> collectibles);
 	return (-1);
 }
-

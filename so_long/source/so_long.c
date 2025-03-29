@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:11:33 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/28 22:43:01 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:31:36 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,25 @@ int	create_window(t_game *game)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_game	game;
-
 
 	ft_memset(&game, 0, sizeof(t_game));
 	game.moves = 0;
 	if (ac != 2)
 		return (write(2, "Error\n", 6), -1);
-	if(chack_all(av[1], &game.map) == -1)
+	if (chack_all(av[1], &game.map) == -1)
 		return (-1);
 	game.mlx = mlx_init();
-	if(!game.mlx)
-		return (write(2, "Error\n", 6), free_matrix(game.map.grid),-1);
+	if (!game.mlx)
+		return (write(2, "Error\n", 6), free_matrix(game.map.grid), -1);
 	create_window(&game);
 	put_img(&game);
 	put_map(&game);
-	mlx_hook(game.win, 2, 1L<<0, key_hook, &game);
+	mlx_hook(game.win, 2, 1L << 0, key_hook, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
 	destroy_img(&game);
-	return(0);
+	return (0);
 }
