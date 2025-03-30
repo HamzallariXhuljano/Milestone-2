@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 07:37:49 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/29 17:27:40 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/30 18:49:40 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ int	valid_pos(size_t x, size_t y, t_map *map)
 		return (-1);
 	if (map->new_map[y][x] == '1' || map->new_map[y][x] == 'X')
 		return (-1);
+	if (map->new_map[y][x] == 'E')
+	{
+		map -> exit = 1;
+		return (-1);
+	}
 	return (0);
 }
 
