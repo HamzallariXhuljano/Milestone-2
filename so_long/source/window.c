@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 22:31:08 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/30 15:59:15 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/31 12:55:00 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void	*texture_creation(void *mlx, char *path, t_game *game)
 	img = mlx_xpm_file_to_image(mlx, path, &width, &height);
 	if (!img)
 	{
-		printf("Errore: impossibile caricare la texture %s\n", path);
+		write(2, "Error\n", 6);
 		destroy_img(game);
 		exit(1);
 	}
-	printf("Texture %s caricata con successo!\n", path);
 	return (img);
 }
 

@@ -6,7 +6,7 @@
 /*   By: xhamzall <xhamzall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:13:11 by xhamzall          #+#    #+#             */
-/*   Updated: 2025/03/30 18:47:46 by xhamzall         ###   ########.fr       */
+/*   Updated: 2025/03/31 12:56:18 by xhamzall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	validate_map(char *file, t_map *map)
 {
 	map -> new_map = NULL;
 	if (!dup_map(file, map))
-		return (write(2, "Error: dup map\n", 15), -1);
+		return (write(2, "Error\n", 6), -1);
 	find_pos(map);
 	map ->cnt_coll = 0;
 	map -> exit = 0;
@@ -53,17 +53,17 @@ int	chack_all(char *file, t_map *map)
 	if (count_line(file, map) == -1)
 		return (-1);
 	if (read_map(file, map) == NULL)
-		return (write(2, "Error1\n", 8), free_matrix(map->grid), -1);
+		return (write(2, "Error\n", 6), free_matrix(map->grid), -1);
 	if (check_wall(map) == -1)
-		return (write(2, "Error2\n", 8), free_matrix(map->grid), -1);
+		return (write(2, "Error\n", 6), free_matrix(map->grid), -1);
 	if (check_c(map) == -1)
-		return (write(2, "Error3\n", 8), free_matrix(map->grid), -1);
+		return (write(2, "Error\n",6), free_matrix(map->grid), -1);
 	if (check_pe(map) == -1)
-		return (write(2, "Error4\n", 8), free_matrix(map->grid), -1);
+		return (write(2, "Error\n", 6), free_matrix(map->grid), -1);
 	if (sign(map) == -1)
-		return (write(2, "Error5\n", 8), free_matrix(map->grid), -1);
+		return (write(2, "Error\n", 6), free_matrix(map->grid), -1);
 	if (validate_map(file, map) == -1)
-		return (write(2, "Error6\n", 8), free_matrix(map->grid), -1);
+		return (write(2, "Error\n", 6), free_matrix(map->grid), -1);
 	return (0);
 }
 // int main(int ac, char **av)
